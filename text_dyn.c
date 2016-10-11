@@ -31,28 +31,7 @@ Funktion för switchar
 Test för om textfilen existerar
 Tagit bort onödig variabel "bokstav", behövs ej för att fånga upp första bokstaven i textraderna
 Det går att starta spelet med en textfil som argument, då laddas denna fil ex: 'text_dyn.exe piratspel.txt'
-
-Manual:
-Textfilen ska vara i detta format:
-
-T1000|0000|INITIAL TEXT VISAS I SPELETS BÖRJAN
-V1001|2100|VAL1 FÖR TEXT T1000
-V1002|2200|VAL2 FÖR TEXT T1000
-V1003|2300|VAL3 FÖR TEXT T1000
-
-T2100|0000|TEXT FÖR VAL 1 FRÅN TEXT1000
-T2101|4000|VAL1 FÖR TEXT T2100
-
-osv
-
-V står för Val
-T för Text
-Sifferlängd måste vara fyra, utan inledande nollor
-
-Val kan gå till samma text.
-Spelet avslutas genom att ange 9999 efter TXXX
-Ex:
-T4201|9999|BRA VAL, DU VANN!
+Namngivning av program: SPELMOTOR TXT
 
 
 Att göra:
@@ -71,16 +50,25 @@ _Bool debugMode = 0;
 
 int main(int argc, char *argv[]){
 	FILE * textfil = fopen(argv[1], "r");
+	char s[N], text[N], valtext[N], filnamn[N];
 	if(textfil == NULL){
 		//Programmet har inte fått en textfil som argument, använder standard.
 		textfil = fopen(TEXTFIL, "r");
 		}
 	//Om standard-textfilen inte har kunnat läsas:
 	if(textfil == NULL){
-		printf("Standardfilen '%s' kunde inte hittas. Avslutar", TEXTFIL);
-		exit(1);
+		printf("Standardfilen '%s' kunde inte hittas. \nAnge filnamn för textfil eller mata in EOF (Ctrl+Z) för att avbryta: ", TEXTFIL);
+		if(radInput(filnamn, N)){
+			textfil = fopen(filnamn, "r");
 		}
-	char s[N], text[N], valtext[N];
+		else{
+			printf("Programmet avslutas!");
+			exit(0);
+		}
+	}
+	printf("%sVälkommen till SPELMOTOR TXT!\nSpel som kommer köras är: %s %s", L, L, L); //FIXA TITEL I TEXTFIL!!!
+	system("pause");
+
 	int siffra = 1000, check, val, switchCheck;
 	while(TTS(s, N, textfil)){
 		system("cls");
