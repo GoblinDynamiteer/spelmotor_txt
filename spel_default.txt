@@ -1,6 +1,4 @@
-
-!!T1004 -- - TEXT FÖR VAL,     V1002|2200| ---   VAL 2 FÖR TEXT 1000, OCH VILKEN TEXT/NYA VAL DET SKA LEDA TILL   |9999| EFTER TEXT AVSLUTAR SPELET
-!!     tecknet  | i text skrivs ut som returslag i spelet
+Björnspelet (Default-äventyr)
 
 !INITIAL TEXT
 T1000|0000|Du är en stor brunbjörn i en svart mörk skog, vad gör du?
@@ -12,23 +10,23 @@ V1004|2400|Ryt!
 !BLÅBÄRSVALET
 T2100|0000|Du hittar inga blåbär, vafalls?|Har någon annan björn ätit dem?|Vad gör du?
 V2101|2500|Leta upp blåbärtjuvsbjörnen!
-V2102|2600|Meh, inte värt besväret.Käka bark istället.
+V2102|2600|Meh, inte värt besväret. Käka bark istället.
 
-!BLÅBÄRSVALET LETA RIVAL
+!BLÅBÄRSVALET - LETA RIVAL
 T2500|0000|Du får upp ett doftspår av den andra björnen.|Du hittar den i full färd med att äta (dina) blåbär!|Vad gör du?
 V2501|4000|Vilken absurd fråga! Attackera rivalbjörnen!
 V2502|4000|Attackera den andra björnen, så klart.
 V2503|4000|En blåbärstjuv kan inte få leva, till attack!
 V2504|4100|Njaaaa, den andra björnen ser stark ut. Lunsa därifrån...
 
-!BLÅBÄRSVALET BARK
-T2600|9999|Bark är ingen lämplig björnföda!|Du är brutalt dålig på att vara en björn, du förlorar!
+!BLÅBÄRSVALET - BARK
+T2600|9997|Bark är ingen lämplig björnföda!|Du är brutalt dålig på att vara en björn, du förlorar!
 
-!BLÅBÄRSVALET - RIVAL - GÅ BORT
-T4100|9998|Du lommar iväg med svansstumpen mellan benen. Texten ska byta färg!
+!RIVAL - GÅ BORT
+T4100|9998|Du lommar iväg med svansstumpen mellan benen.|Nåja, blåbär är inget vidare ändå...
 
 !GÅ I IDE - VINST
-T2200|9999|Du går i ide: ZzzzzZzzzzz.|Bra björn, du vann!
+T2200|9996|Du går i ide: ZzzzzZzzzzz.|Bra björn, du vann!
 
 !MYROR
 T2300|0000|Myror är inget vidare, smakar surt.|Men fungerar i krig.|Var vill du leta efter myror?
