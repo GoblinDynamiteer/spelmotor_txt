@@ -5,7 +5,7 @@
 #include <windows.h>
 #include "strings_text_v1.h" //Eget funktionsbibliotek
 #define N 300
-#define TEXTFIL "text_spel.txt" //Standardtextfil med "Björnspelet"
+#define TEXTFIL "spel_default.txt" //Standardtextfil med "Björnspelet"
 #define L "\n-----------------------------------------------------------------\n"
 #define TEXTHASTIGHET 3 //sätt till 0 för instant text
 #define LT 11  //antal tecken innan text som ska visas i textfil V1001|2100|Text som ska visas
@@ -32,16 +32,19 @@ Test för om textfilen existerar
 Tagit bort onödig variabel "bokstav", behövs ej för att fånga upp första bokstaven i textraderna
 Det går att starta spelet med en textfil som argument, då laddas denna fil ex: 'text_dyn.exe piratspel.txt'
 Namngivning av program: SPELMOTOR TXT
+Borttagning av onödiga deklarerade variabler som inte användes.
 
 
 Att göra:
-Enklare utforming av textfilens utförande?
 Kommentera koden
 Fler koder för TXXX|YYYY| Där Y kan vara färgbyte, pip, omstart-fråga etc 9998 9997 lämpligen...
 Spellogo, ex L0000| ASCII ART
 
+
+PROBLEM INMATNING AV ICKESIFFRA
+
 */
-int listaval(int a, FILE *f);
+int listaVal(int a, FILE *f);
 void skrivUtText(char *string, int n, _Bool linjer);
 void textSwitchar(int s);
 
@@ -49,8 +52,11 @@ void textSwitchar(int s);
 _Bool debugMode = 0;
 
 int main(int argc, char *argv[]){
+	
 	FILE * textfil = fopen(argv[1], "r");
-	char s[N], text[N], valtext[N], filnamn[N];
+	char s[N], filnamn[N];
+	int siffra = 1000, idCheck, switchCheck;
+	
 	if(textfil == NULL){
 		//Programmet har inte fått en textfil som argument, använder standard.
 		textfil = fopen(TEXTFIL, "r");
@@ -69,23 +75,22 @@ int main(int argc, char *argv[]){
 	printf("%sVälkommen till SPELMOTOR TXT!\nSpel som kommer köras är: %s %s", L, L, L); //FIXA TITEL I TEXTFIL!!!
 	system("pause");
 
-	int siffra = 1000, check, val, switchCheck;
+	
 	while(TTS(s, N, textfil)){
 		system("cls");
-		sscanf(s+1, "%d", &check);
-		strncpy(text, s+LT, strlen(s));
-		if(s[0] == 'T' && check == siffra){
+		sscanf(s+1, "%d", &idCheck);
+		if(s[0] == 'T' && idCheck == siffra){
 			skrivUtText(s+LT, strlen(s)-LT, 1);
 			sscanf(s+6,"%d", &switchCheck);
-			textSwitchar(switchCheck);
-			siffra = listaval(siffra, textfil);
+			textSwitchar(switchCheck); //FIXA SÅ SWITCH RETURNERAR 1/0 om spelet ska avslutas, lägg switch innan textutskrift
+			siffra = listaVal(siffra, textfil);
 			rewind(textfil);
 		} 
 	}
 	return 0;
 }
 
-int listaval(int a, FILE *f){
+int listaVal(int a, FILE *f){
 	int valraknare = 1, check, val, nasta;
 	_Bool korrektVal = 1;
 	char s[N];
@@ -100,7 +105,7 @@ int listaval(int a, FILE *f){
 			valraknare++;
 		}
 	}
-	valraknare--; //OKLART
+	valraknare--;
 	if(debugMode){printf("\nFunktion räknare: %d", valraknare);}
 	do{
 		if(korrektVal){
@@ -142,12 +147,12 @@ void skrivUtText(char *string, int n, _Bool linjer){
 		printf("%s", L);
 	}
 }
-void textSwitchar(int s){
+void textSwitchar(int s){ //RETURNERA 1/0 för att fortsätta spela etc
 	if(debugMode){printf("Switch-funktion: Nummer: %d", s);}
 	switch(s){
 		case 9999:
 			//printf("%sSpelet är slut! - Tack!%s",L,L);
-			skrivUtText("Spelet är Slut|Tack!", 20, 1);
+			skrivUtText("Spelet är Slut|Tack!", 20, 1); //FIXA J/N
 			exit(0);
 			break;
 		case 9998:
