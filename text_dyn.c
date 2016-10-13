@@ -150,7 +150,7 @@ int main(int argc, char *argv[]){
 Som parametrar får funktionen textens identifikationsnummer som en int-variabel, 
 samt den inlästa textfilen
 Funktionen kontrollerar att användaren matar in en korrekt siffra för val, 
-och returnerar sedan det identifikationsnummer som tillhör nästa text som ska skrivas ut. */.
+och returnerar sedan det identifikationsnummer som tillhör nästa text som ska skrivas ut. */
 int listaVal(int a, FILE *f){
 	int valRaknare = 1, checkVal, anvandareVal = 0, nastaIdNum;
 	_Bool korrektVal = 1;
@@ -198,7 +198,7 @@ int listaVal(int a, FILE *f){
 			sscanf(s+6,"%d", &nastaIdNum);
 		}
 	}
-	if(debugMode){printf("\n[Funktion listaVal returnerar: %d]\n", nasta);}
+	if(debugMode){printf("\n[Funktion listaVal returnerar: %d]\n", nastaIdNum);}
 	return nastaIdNum;
 }
 
