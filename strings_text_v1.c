@@ -104,7 +104,7 @@ antal tecken som ska skrivas, samt filen.
 
 clearBufferFil med filen som parameter används i stället för clearBuffer.
 
-Bokens version kallas read_line och finns på sida 200 */
+Bokens version kallas fread_line och finns på sida 226 */
 _Bool textfilTillString(char *a, int n, FILE *f){
 	if (fgets(a, n, f) == NULL){
 		return 0;
