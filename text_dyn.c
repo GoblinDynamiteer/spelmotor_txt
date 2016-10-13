@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h>       ------------- KANSKE EJ BEHÖVS
 #include <string.h>
 #include <ctype.h>
 #include <windows.h>
@@ -37,22 +37,26 @@ Fler sifferkoder tillagda för färgbyte vid avslut av spel
 Version 2016-10-13
 Ändrat ordning på laddning av textfil. Från -> argument - default - användarinmatning TILL argument - användarinmatning - default
 Lagt in system("chcp 1252") vid programmet start för att byta teckenkodning, så att ÅÄÖ etc fungerar
+Uppdaterat debug-texter
+Korrigerat grammatik och stavfel
+Lagt till kommandon för att byta textfärg, utan att avsluta spelet
 
 Att göra:
 Kommentera koden
 Fler koder för TXXX|YYYY| Där Y kan vara färgbyte, pip, omstart-fråga etc 9998 9997 lämpligen...
 Färgkoder där spelet inte avslutas?
-Spellogo, ex L0000| ASCII ART nja
 PROBLEM INMATNING AV ICKESIFFRA
 Ändra manual, användarinmatning laddas innan default nu
 FIXA MER SPEL,och uppdatera zombierspelet
 
 */
+
+//Deklaration av funktioner i denna fil
 int listaVal(int a, FILE *f);
 void skrivUtText(char *string, int n, _Bool linjer);
 _Bool textSwitchar(int s);
 
-//sätt till 1 för att se diverse info från funktionen
+//Debug-mode. Sätt till 1 för att få extra information utskriven från programmet
 _Bool debugMode = 0;
 
 int main(int argc, char *argv[]){
@@ -64,7 +68,7 @@ int main(int argc, char *argv[]){
 	skrivUtText("SPELMOTOR TXT", 13, 1);
 	if(textfil == NULL){
 		//Programmet har inte fått en textfil som argument, frågar efter input
-		printf("Ange filnamn (med filändelse) för textfil.\nMata in EOF (Ctrl+Z) för att avbryta\n\nTextfil: ");
+		printf("Ange filnamn (med filändelse) för textfil.\nMata in EOF (Ctrl+Z) för att avbryta\nOm ingen fil anges laddas %s\n\nTextfil: ",TEXTFIL);
 		if(radInput(filnamn, N)){
 			textfil = fopen(filnamn, "r");
 		}
@@ -75,7 +79,7 @@ int main(int argc, char *argv[]){
 	}
 	//Om input inte kan läsas försöker programmet ladda in standard-text
 	if(textfil == NULL){
-		printf("Inmatad fil kunde inte läsas '%s' kunde inte hittas.\nLäser in standard-spel %s", filnamn, TEXTFIL);
+		printf("Inmatad fil: '%s' kunde inte läsas.\nLäser in standard-spel %s", filnamn, TEXTFIL);
 		textfil = fopen(TEXTFIL, "r");
 	}
 	if(textfil == NULL){
@@ -125,7 +129,7 @@ int listaVal(int a, FILE *f){
 		}
 	}
 	valraknare--;
-	if(debugMode){printf("\nFunktion räknare: %d", valraknare);}
+	if(debugMode){printf("\n[Funktion listaVal - valräknare värde: %d]\n", valraknare);}
 	//Do-sats som upprepas om användaren inte matar in ett korrekt val.
 	do{
 		if(korrektVal){
@@ -135,7 +139,6 @@ int listaVal(int a, FILE *f){
 			printf("%sFel val!\nAnge val genom at slå in en siffra: ",L);
 		}
 		scanf("%d", &val);
-		if(debugMode){printf("\nval Input do-sats: %d, räknare: %d", val, valraknare);}
 		korrektVal = 0;
 	} while(val <=0 || val > valraknare);
 
@@ -146,7 +149,7 @@ int listaVal(int a, FILE *f){
 			sscanf(s+6,"%d", &nasta);
 		}
 	}
-	if(debugMode){printf("\nFunktion returnerar: %d", nasta);}
+	if(debugMode){printf("\n[Funktion listaVal returnerar: %d]\n", nasta);}
 	return nasta;
 }
 
@@ -170,22 +173,34 @@ void skrivUtText(char *string, int n, _Bool linjer){
 
 //Funktionen returnerar 0 om spelet ska avslutas, annars 1
 _Bool textSwitchar(int s){
-	if(debugMode){printf("Switch-funktion: Nummer: %d", s);}
+	if(debugMode){printf("[Switch-funktion: Nummer: %d]\n", s);}
 	//break; behövs inte för switch-satsen inte funktionen avslutas när returvärde skickas.
 	switch(s){
 		case 9999:
 			//Spelet avslutas
 			return 0; 
+		case 9993:
+			//Spelets text byter färg till blå
+			system("color 09");
+			return 1;
+		case 9994:
+			//Spelets text byter färg till grön
+			system("color 02");
+			return 1;
+		case 9995:
+			//Spelets text byter färg till röd
+			system("color 04");
+			return 1;
 		case 9996:
-			//Spelet avslutas och texten byter färg till blå
+			//Spelets text byter färg till blå och spelet avslutas
 			system("color 09");
 			return 0;
 		case 9997:
-			//Spelet avslutas och texten byter färg till grön
+			//Spelets text byter färg till grön och spelet avslutas
 			system("color 02");
 			return 0;
 		case 9998:
-			//Spelet avslutas och texten byter färg till rött
+			//Spelets text byter färg till röd och spelet avslutas
 			system("color 04");
 			return 0;
 		case 0000:
