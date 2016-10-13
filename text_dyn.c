@@ -1,26 +1,30 @@
 #include <stdio.h>
-#include <stdlib.h>       ------------- KANSKE EJ BEHÖVS
+#include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 #include <windows.h>
-#include "strings_text_v1.h" //Eget funktionsbibliotek
-#define N 300
+#include "strings_text_v1.h" //Eget funktionsbibliotek innehållande diverse text- och textfil-funktioner
+
+#define N 300	//Längd för char-variabler, och parameter till vissa funktioner
 #define TEXTFIL "spel_default.txt" //Standardtextfil med "Björnspelet"
-#define L "\n-----------------------------------------------------------------\n"
-#define TEXTHASTIGHET 3 //sätt till 0 för instant text
-#define LT 11  //antal tecken innan text som ska visas i textfil V1001|2100|Text som ska visas
+#define L "\n-----------------------------------------------------------------\n" //För utskrift av linjer med printf
+#define TEXTHASTIGHET 3		//Antal millisekunder att pausera mellan varje teckenutskrift i funktionen skrivUtText
+#define LT 11	//Antal tecken på rad i textfilen, innan text som ska visas, ex: "V1001|2100|Text som ska visas"
 
 /*
-Spelmotor för textäventyr med extern textfil
+SPELMOTOR TXT
+Program för att köra speläventyr från textfiler.
+Av Johan Kämpe
 
-Version 2016-10-10
+Ändringslogg:
+2016-10-10
 Initial release
-Spelet fungerar utifrån textfilen.
-Spelet kan avslutas utifrån textfilens val
-Check för inmatning av val, med do-sats
-Debug-switch
+Testspel fungerar att köras från textfil.
+Spelet kan avslutas
+Kontroll tillagt för användarinmatning vid val
+Debug-funktionalitet tillagd
 
-Version 2016-10-11
+2016-10-11
 Radbrytningar i text, dessa triggas med tecknet | i textfilen
 Funktion för switchar
 Test för om textfilen existerar
@@ -29,46 +33,50 @@ Det går att starta spelet med en textfil som argument, då laddas denna fil ex: '
 Namngivning av program: SPELMOTOR TXT
 Borttagning av onödiga deklarerade variabler som inte användes.
 
-Version 2016-10-12
-Stöd för titel av spel, skrivs på översta raden i textfilen
-Stöd för omspel J/N
-Fler sifferkoder tillagda för färgbyte vid avslut av spel
+2016-10-12
+Stöd för titel av spel, som ska/måste skrivas på rad 1 i textfilen.
+Stöd för omspel, användaren kan trycka på J/j efter avslutat spel för att spel om.
+Fler sifferkoder tillagda för färgbyte vid avslut av spel.
 
-Version 2016-10-13
-Ändrat ordning på laddning av textfil. Från -> argument - default - användarinmatning TILL argument - användarinmatning - default
-Lagt in system("chcp 1252") vid programmet start för att byta teckenkodning, så att ÅÄÖ etc fungerar
+2016-10-13
+Ändrat ordning på laddning av textfiler
+Lagt in system("chcp 1252") för att byta teckenkodning, så att svenska tecken visas korrekt.
 Uppdaterat debug-texter
-Korrigerat grammatik och stavfel
-Lagt till kommandon för att byta textfärg, utan att avsluta spelet
-
-Att göra:
-Kommentera koden
-Fler koder för TXXX|YYYY| Där Y kan vara färgbyte, pip, omstart-fråga etc 9998 9997 lämpligen...
-Färgkoder där spelet inte avslutas?
-PROBLEM INMATNING AV ICKESIFFRA
-Ändra manual, användarinmatning laddas innan default nu
-FIXA MER SPEL,och uppdatera zombierspelet
+Korrigerat grammatik och stavfel i text.
+Lagt till tre nya kommandon för att byta textfärg, utan att avsluta spelet
+Flertalet namnbyten av variabler
 
 */
 
-//Deklaration av funktioner i denna fil
+//Deklaration av funktioner som finns i denna fil:
 int listaVal(int a, FILE *f);
 void skrivUtText(char *string, int n, _Bool linjer);
 _Bool textSwitchar(int s);
 
-//Debug-mode. Sätt till 1 för att få extra information utskriven från programmet
+//Debug-läge. Sätt till 1 för att få extra information utskriven från programmet
 _Bool debugMode = 0;
 
+
+//Parametern argv för mainfunktionen ges från kommandopromten med "spelmotortxt.exe PARAMETER"
 int main(int argc, char *argv[]){
+	/* Öppnar värdet i argv[1] som textfil till variabel textfil 
+	argv[0] är programmets namn */
 	FILE * textfil = fopen(argv[1], "r");
 	char s[N], filnamn[N], restart = 'j';
-	int siffra, idCheck, switchCheck;
+	int idNum, idCheck, switchCheck;
+	/* Sätter teckenkodning till 1252, för korrekt utskrift av svenska tecken.
+	Blankar sedan skärmen */
 	system("chcp 1252");
 	system("cls");
+	/*skrivUtText(s,n,l) --> Skriver ut n antal tecken av strängen s. 
+	Om l == 1 skrivs "linjer" ut innan och efter texten (macro L). */
 	skrivUtText("SPELMOTOR TXT", 13, 1);
-	if(textfil == NULL){
-		//Programmet har inte fått en textfil som argument, frågar efter input
+
+	if(textfil == NULL){ 
+		/* Programmet har inte fått en textfil som argument, eller har inte kunnat hitta/läsa textfilen i argumentet. 
+		Användaren uppmanas att skriva in ett namn för textfil att spela med. */
 		printf("Ange filnamn (med filändelse) för textfil.\nMata in EOF (Ctrl+Z) för att avbryta\nOm ingen fil anges laddas %s\n\nTextfil: ",TEXTFIL);
+		//radInput finns i strings_text_v1.c, och beskrivs där.
 		if(radInput(filnamn, N)){
 			textfil = fopen(filnamn, "r");
 		}
@@ -77,93 +85,146 @@ int main(int argc, char *argv[]){
 			exit(0);
 		}
 	}
-	//Om input inte kan läsas försöker programmet ladda in standard-text
-	if(textfil == NULL){
+
+	if(textfil == NULL){ 
+		//Om inmatad fil från använder inte kan läsas försöker programmet ladda in standard-text definierad i macrot TEXTFIL
 		printf("Inmatad fil: '%s' kunde inte läsas.\nLäser in standard-spel %s", filnamn, TEXTFIL);
 		textfil = fopen(TEXTFIL, "r");
 	}
-	if(textfil == NULL){
-		printf("Standardfilen '%s' kunde inte hittas. Programmet avlutas", TEXTFIL);
-	}
 
+	if(textfil == NULL){
+		//Om TEXTFIL inte kunde läsas in avslutas programmet
+		printf("Standardfilen '%s' kunde inte hittas. Programmet avlutas", TEXTFIL);
+		return 0;
+	}
+	
+	/* Spelet kommer startas om så länge användaren trycker på j/J efter avslutat spel
+	tolower() används för att konvertera ett tecken till en gemen */
 	while(tolower(restart) == 'j'){
-		siffra = 1000;
-		TTS(s, N, textfil); //Läser in textfilens första rad (som ska vara spelets titel) till variabel 's'
-		
+		/* idNum sätts till 1000 för att skriva ut spelets första val, som ska vara just 1000 */
+		idNum = 1000;
+		//TTS finns i strings_text_v1.c, och beskrivs där. Textfilens första rad, som ska vara spelets titel, läses till variabeln s.
+		TTS(s, N, textfil);
 		printf("%sSpel som kommer köras är: %s %s", L, s, L);
+		//Programmet pauserar tills användaren trycker på en valfri tangent, sedan blankas skärmen
 		system("pause");
 		system("cls");
 		while(TTS(s, N, textfil)){
+			/* sscanf fungerar likt scanf, fast från en textsträng i stället för användarinmatning 
+			Här läses siffervärdet efter det första tecknet i char-variabeln s till idCheck */
 			sscanf(s+1, "%d", &idCheck);
-			if(s[0] == 'T' && idCheck == siffra){
+			//Letar efter rad som börjar på T och har siffervärdet i variabeln siffra
+			if(s[0] == 'T' && idCheck == idNum){
+				/* När rätt rad hittas skrivs radens text ut med funktionen skrivUtText
+				LT är antalet tecken innan texten som ska skrivas ut. */
 				skrivUtText(s+LT, strlen(s)-LT, 1);
+				/* Läser sifferkoden för den aktuella raden till switchCheck. 
+				Funktionen textSwitchar anropas med sifferkoden.
+				Funktionen utför olika kommandon beroende på kodens värde 
+				Om spelet ska avslutas ger funktionen returvärdet 0, annars 1 */
 				sscanf(s+6,"%d", &switchCheck);
 				if(!textSwitchar(switchCheck)){
 					skrivUtText("Spelet är Slut|Tack!", 20, 1);
-					break;
+					break; //Bryter den inre while-loopen
 				}
-				siffra = listaVal(siffra, textfil);
+				/* Funktionen listaVal anropas med idNum och textfilen som parametrar.
+				Funktionen returnerar ett nytt värde som idNum sätts till. */
+				idNum = listaVal(idNum, textfil);
+				//rewind() "spolar" tillbaka textfilen till dess början.
 				rewind(textfil);
 			}
 		}
 	rewind(textfil);
+	//clearBuffer finns i strings_text_v1.c, och beskrivs där. Tömmer teckenbuffer.
 	clearBuffer();
 	printf("Tryck J för att spela igen: ");
 	restart = getchar();
-	system("color 7"); //Återställer textfärgen till vit
+	//Sätter textfärgen till vit
+	system("color 7"); 
 	}
 	return 0;
 }
 
+
+/* Funktionen listaVal skriver ut de val som finns för det aktuella scenariot i spelet. 
+Som parametrar får funktionen textens identifikationsnummer som en int-variabel, 
+samt den inlästa textfilen
+Funktionen kontrollerar att användaren matar in en korrekt siffra för val, 
+och returnerar sedan det identifikationsnummer som tillhör nästa text som ska skrivas ut. */.
 int listaVal(int a, FILE *f){
-	int valraknare = 1, check, val = 0, nasta;
+	int valRaknare = 1, checkVal, anvandareVal = 0, nastaIdNum;
 	_Bool korrektVal = 1;
-	char s[N];
+	char s[N]; //Likt variabeln s i main-funktionen
 	while(TTS(s, N, f)){
-		sscanf(s+1, "%d", &check);
-		if(s[0] == 'V' && check == a+valraknare){
-			printf("[%d] ", valraknare);
+		//Läser in den aktuella radens identifikationsnummer till checkVal
+		sscanf(s+1, "%d", &checkVal);
+		/* Jämför identifikationsnummer i checkVal med identifikationsnummer i funktionens parameter 'a'
+		adderat med värdet i valRaknare, som börjar på 1.
+		Ex: Om texten som visats har identifikationsnummer T1000, så ska valen ha V1001, V1002 osv. */
+		if(s[0] == 'V' && checkVal == a+valRaknare){
+			/* Skriver ut val-siffra för inmatning från användare, efter skrivs valets text och nyradstecken
+			valRaknare ökar med 1 för att kontrollera om det finns fler val. */
+			printf("[%d] ", valRaknare);
 			skrivUtText(s+LT, strlen(s)-LT, 0);
 			printf("\n");
-			valraknare++;
+			valRaknare++;
 		}
 	}
-	valraknare--;
-	if(debugMode){printf("\n[Funktion listaVal - valräknare värde: %d]\n", valraknare);}
+	valRaknare--; //Backar valRaknare med 1 (sista valet hittades inte)
+	if(debugMode){printf("\n[Funktion listaVal - valräknare värde: %d]\n", valRaknare);}
 	//Do-sats som upprepas om användaren inte matar in ett korrekt val.
 	do{
-		if(korrektVal){
+		if(korrektVal){ //Triggar alltid första gången
 			printf("%sAnge val genom at slå in en siffra: ",L);
 		}
 		else {
 			printf("%sFel val!\nAnge val genom at slå in en siffra: ",L);
 		}
-		scanf("%d", &val);
-		korrektVal = 0;
-	} while(val <=0 || val > valraknare);
+		scanf("%d", &anvandareVal);
+		//korrektVal sätts till 0, för att skriva ut "Fel val!" ovan, om användaren skulle skriva in ett felaktigt val
+		korrektVal = 0; 
+	//Det inmatade värdet från användaren ska vara mellan 1 och värdet i valRaknare
+	} while(anvandareVal <=0 || anvandareVal > valRaknare);
 
 	rewind(f);
 		while(TTS(s, N, f)){
-		sscanf(s+1, "%d", &check);
-		if(s[0] == 'V' && check == a+val){
-			sscanf(s+6,"%d", &nasta);
+		/* checkVal sätts till den aktuella radens identifikationsnummer och jämförs 
+		med identifikationsnummer i funktionens parameter 'a' adderat med användarinmatningen 
+		i anvandareVal */
+		sscanf(s+1, "%d", &checkVal);
+		//Val-rader i textfilen ska börja med tecknet 'V'
+		if(s[0] == 'V' && checkVal == a+anvandareVal){
+			//När korrekt rad hittas sätts nastaIdNum till identifikationsnumret för nästa rad som ska användas i spelet
+			sscanf(s+6,"%d", &nastaIdNum);
 		}
 	}
 	if(debugMode){printf("\n[Funktion listaVal returnerar: %d]\n", nasta);}
-	return nasta;
+	return nastaIdNum;
 }
 
+/* Funktionen skrivUtText skriver ut text till skärmen, ett tecken i taget. 
+Mellan varje teckenutskrift sker en fördröjning på lika många millisekunder 
+som macrot TEXTHASTIGHET är definierat till. 
+
+Som parametrar får funktionen textsträngen som ska skrivas ut, en int-variabel 
+med antal tecken som ska skrivas ut. 
+
+_Bool-variabeln linjer bestämmer om funktionen ska skriva ut ”rader” i  början och slutet av textblocken. */
 void skrivUtText(char *string, int n, _Bool linjer){
 	if(linjer){
 		printf("%s", L);
 	}
+	//for-loop som kör 'n' antal varv
 	for(int i=0;i<n;i++){
+		//Om tecknet '|' hittas i textsträngen skrivs ett nyradstecken ut i stället.
 		if (string[i] == '|'){
 			printf("\n");
 		}
 		else{
+			//putchar skriver ut ett tecken
 			putchar(string[i]);
 		}
+		//Pauserar programmet TEXTHASTIGHET millisekunder
 		Sleep(TEXTHASTIGHET);
 	}
 	if(linjer){ 
@@ -171,42 +232,46 @@ void skrivUtText(char *string, int n, _Bool linjer){
 	}
 }
 
-//Funktionen returnerar 0 om spelet ska avslutas, annars 1
+/*
+Funktionen textSwitchar används för att köra vissa kommandon som kan användas i spelet. 
+Som t.ex. att avsluta spelet eller att byta färg på texten. 
+Som parametrar får funktionen den sifferkod som finns efter den aktuella textradens identifikationsnummer. 
+Funktionen returnerar 1 eller 0 beroende på om spelet ska avslutas eller inte. */
 _Bool textSwitchar(int s){
 	if(debugMode){printf("[Switch-funktion: Nummer: %d]\n", s);}
-	//break; behövs inte för switch-satsen inte funktionen avslutas när returvärde skickas.
+	//break; behövs inte för switch-satsen, funktionen avslutas när returvärde skickas.
 	switch(s){
 		case 9999:
-			//Spelet avslutas
+			//Spelet avslutas.
 			return 0; 
 		case 9993:
-			//Spelets text byter färg till blå
+			//Spelets text byter färg till blå.
 			system("color 09");
 			return 1;
 		case 9994:
-			//Spelets text byter färg till grön
+			//Spelets text byter färg till grön.
 			system("color 02");
 			return 1;
 		case 9995:
-			//Spelets text byter färg till röd
+			//Spelets text byter färg till röd.
 			system("color 04");
 			return 1;
 		case 9996:
-			//Spelets text byter färg till blå och spelet avslutas
+			//Spelets text byter färg till blå och spelet avslutas.
 			system("color 09");
 			return 0;
 		case 9997:
-			//Spelets text byter färg till grön och spelet avslutas
+			//Spelets text byter färg till grön och spelet avslutas.
 			system("color 02");
 			return 0;
 		case 9998:
-			//Spelets text byter färg till röd och spelet avslutas
+			//Spelets text byter färg till röd och spelet avslutas.
 			system("color 04");
 			return 0;
+			//0000 används för att enbart skriva ut texten, utan extra funktionalitet.
 		case 0000:
 			return 1;
 		default:
 			return 1;
-			break;
 	}
 }
