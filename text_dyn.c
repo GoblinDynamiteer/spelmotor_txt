@@ -34,12 +34,18 @@ Stöd för titel av spel, skrivs på översta raden i textfilen
 Stöd för omspel J/N
 Fler sifferkoder tillagda för färgbyte vid avslut av spel
 
+Version 2016-10-13
+Ändrat ordning på laddning av textfil. Från -> argument - default - användarinmatning TILL argument - användarinmatning - default
+Lagt in system("chcp 1252") vid programmet start för att byta teckenkodning, så att ÅÄÖ etc fungerar
+
 Att göra:
 Kommentera koden
 Fler koder för TXXX|YYYY| Där Y kan vara färgbyte, pip, omstart-fråga etc 9998 9997 lämpligen...
-Spellogo, ex L0000| ASCII ART
+Färgkoder där spelet inte avslutas?
+Spellogo, ex L0000| ASCII ART nja
 PROBLEM INMATNING AV ICKESIFFRA
-TITEL MANUAL!!!!!!
+Ändra manual, användarinmatning laddas innan default nu
+FIXA MER SPEL,och uppdatera zombierspelet
 
 */
 int listaVal(int a, FILE *f);
@@ -53,25 +59,34 @@ int main(int argc, char *argv[]){
 	FILE * textfil = fopen(argv[1], "r");
 	char s[N], filnamn[N], restart = 'j';
 	int siffra, idCheck, switchCheck;
+	system("chcp 1252");
+	system("cls");
+	skrivUtText("SPELMOTOR TXT", 13, 1);
 	if(textfil == NULL){
-		//Programmet har inte fått en textfil som argument, använder standard.
-		textfil = fopen(TEXTFIL, "r");
-		}
-	//Om standard-textfilen inte har kunnat läsas:
-	if(textfil == NULL){
-		printf("Standardfilen '%s' kunde inte hittas. \nAnge filnamn för textfil eller mata in EOF (Ctrl+Z) för att avbryta: ", TEXTFIL);
+		//Programmet har inte fått en textfil som argument, frågar efter input
+		printf("Ange filnamn (med filändelse) för textfil.\nMata in EOF (Ctrl+Z) för att avbryta\n\nTextfil: ");
 		if(radInput(filnamn, N)){
 			textfil = fopen(filnamn, "r");
 		}
-		else{
+		else {
 			printf("Programmet avslutas!");
 			exit(0);
 		}
 	}
+	//Om input inte kan läsas försöker programmet ladda in standard-text
+	if(textfil == NULL){
+		printf("Inmatad fil kunde inte läsas '%s' kunde inte hittas.\nLäser in standard-spel %s", filnamn, TEXTFIL);
+		textfil = fopen(TEXTFIL, "r");
+	}
+	if(textfil == NULL){
+		printf("Standardfilen '%s' kunde inte hittas. Programmet avlutas", TEXTFIL);
+	}
+
 	while(tolower(restart) == 'j'){
 		siffra = 1000;
 		TTS(s, N, textfil); //Läser in textfilens första rad (som ska vara spelets titel) till variabel 's'
-		printf("%sVälkommen till SPELMOTOR TXT!\nSpel som kommer köras är: %s %s", L, s, L);
+		
+		printf("%sSpel som kommer köras är: %s %s", L, s, L);
 		system("pause");
 		system("cls");
 		while(TTS(s, N, textfil)){
@@ -85,7 +100,7 @@ int main(int argc, char *argv[]){
 				}
 				siffra = listaVal(siffra, textfil);
 				rewind(textfil);
-			} 
+			}
 		}
 	rewind(textfil);
 	clearBuffer();

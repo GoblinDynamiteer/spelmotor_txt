@@ -1,0 +1,36 @@
+Dietmar och kaffezombierna! (av Daniel, Johan, Tak-Loon, Robert & Mazen)
+
+T1000|0000|Du kommer tillbaka till skolan efter helgen.|Du är lite sen, och upptäcker att kaffedrickarna beter sig konstigt.|Vad gör du?
+V1001|1110|Dricker kaffe.
+V1002|1120|Dricker te.
+V1003|1130|Väljer att inte dricka någonting.
+
+!KAFFESPÅRET
+T1110|0000|Du provar kaffet, och börjar känna dig egendomligt odöd.|Du är nu en zombie!|Du känner en stark lust att äta hjärnsubstans...|Du ser att en av dina kamrater kommer in genom ytterdörren|Vad gör du?
+V1111|1140|Försök att äta klasskompisens hjärna.
+V1112|1150|Försök att motstå din instinkt att äta klasskompisens hjärna.
+
+!TE - FÖRLUST
+T1120|9998|Du väljer att ta te i stället för kaffe!?|Du dog!
+
+!KAFFESPÅRET VAL 1 - ÄT HJÄRNA
+T1140|0000|Dietmar kommer in med en yxa och går till attack!!|Vad gör du?
+V1141|1210|Attackera Dietmar!
+V1142|1220|Fly!
+
+!KAFFESPÅRET VAL 2 - HJÄRNBRIST - FÖRLUST
+T1150|9999|Du äter inte upp klasskompisens hjärna.|Du dog av "hjärnbrist"
+
+!DIETMARATTACK VAL 1 - ATTACK - FÖRLUST
+T1210|9999|Du attackerar Dietmar, och har förstås inte en chans!|Dietmar klyver dig på mitten med ett enda, kraftfullt hugg.|Du dog.
+
+!DIETMARATTACK VAL 2 - FLY
+T1220|0000|Du börjar hasa dig bort från Dietmar, och råkar välta kaffemaskinen.|Maskinen stoppar Dietmar temporärt, och du kommer in i lunchrummet.|Det är stort tumult i klassrummet, zombies och människor i storbråk!|Vad gör du?
+V1221|1310|Delta!
+V1222|1320|Hasa dig ut på bakgården.
+
+!KLASSRUMFIGHT - DELTA - FÖRLUST
+T1310|9999|Dietmar kommer in i rummet med yxan i högsta hugg|Han skriker något på österrikiska och slaktar sedan vilt alla zombies.|Du dog (först)
+
+!KLASSRUMFIGHT - AUTOLIV - FÖRLUST
+T1320|9999|Du blir brutalt överkörd av en testbil från Autoliv|Inga vidare värst bra säkerhetssystem i den bilen...|Du dog
