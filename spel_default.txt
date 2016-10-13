@@ -13,7 +13,7 @@ V2101|2500|Leta upp blåbärtjuvsbjörnen!
 V2102|2600|Meh, inte värt besväret. Käka bark istället.
 
 !BLÅBÄRSVALET - LETA RIVAL
-T2500|0000|Du får upp ett doftspår av den andra björnen.|Du hittar den i full färd med att äta (dina) blåbär!|Vad gör du?
+T2500|9995|Du får upp ett doftspår av den andra björnen.|Du hittar den i full färd med att äta (dina) blåbär!|Vad gör du?
 V2501|4000|Vilken absurd fråga! Attackera rivalbjörnen!
 V2502|4000|Attackera den andra björnen, så klart.
 V2503|4000|En blåbärstjuv kan inte få leva, till attack!
