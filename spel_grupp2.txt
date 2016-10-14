@@ -22,7 +22,8 @@ V1142|1220|Fly!
 T1150|9999|Du äter inte upp klasskompisens hjärna.|Du dog av "hjärnbrist"
 
 !KAFFESPÅRET VAL 3 - DRICK INGET
-T1130|0000|Du dricker inget kaffe! Smart!|Du förblir en fullt frisk, levande människa!
+T1130|0000|Du dricker inget kaffe!|Du förblir en fullt frisk, levande människa!|Smart!
+!BYGG VIDARE--
 
 !DIETMARATTACK VAL 1 - ATTACK - FÖRLUST
 T1210|9999|Du attackerar Dietmar, och har förstås inte en chans!|Dietmar klyver dig på mitten med ett enda, kraftfullt hugg.|Du dog.
