@@ -5,7 +5,7 @@
 #include <windows.h>
 #include "strings_text_v1.h" //Eget funktionsbibliotek innehållande diverse text- och textfil-funktioner
 
-#define N 300	//Längd för char-variabler, och parameter till vissa funktioner
+#define N 1000	//Längd för char-variabler, och parameter till vissa funktioner
 #define TEXTFIL "spel_default.txt" //Standardtextfil med "Björnspelet"
 #define L "\n-----------------------------------------------------------------\n" //För utskrift av linjer med printf
 #define TEXTHASTIGHET 3		//Antal millisekunder att pausera mellan varje teckenutskrift i funktionen skrivUtText
@@ -45,6 +45,9 @@ Uppdaterat debug-texter
 Korrigerat grammatik och stavfel i text.
 Lagt till tre nya kommandon för att byta textfärg, utan att avsluta spelet
 Flertalet namnbyten av variabler
+
+2016-10-16
+Ökade radinläsning (macro N) till 1000 st tecken.
 
 */
 
