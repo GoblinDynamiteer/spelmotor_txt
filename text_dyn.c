@@ -13,6 +13,11 @@
 
 /*
 SPELMOTOR TXT
+
+2016-10-16
+Experiment
+BRANCH: Inläsning av hel textfil till struct - Test
+
 Program för att köra speläventyr från textfiler.
 Av Johan Kämpe
 
@@ -46,6 +51,11 @@ Korrigerat grammatik och stavfel i text.
 Lagt till tre nya kommandon för att byta textfärg, utan att avsluta spelet
 Flertalet namnbyten av variabler
 
+BRANCH -------
+2016-10-16
+Experiment
+Inläsning av hel textfil till struct - Test
+
 */
 
 //Deklaration av funktioner som finns i denna fil:
@@ -57,13 +67,27 @@ _Bool textSwitchar(int s);
 _Bool debugMode = 0;
 
 
+struct val{
+	char text[N];
+	int nastaText;
+	int idNum;
+};
+
+struct aventyr{
+	int idNum, antalVal, kod;
+	char text[N];
+	_Bool AvslutaSpel;
+};
+
+//strcpy(valText.valTextArray[0], "Test");
+
 //Parametern argv för mainfunktionen ges från kommandopromten med "spelmotortxt.exe PARAMETER"
 int main(int argc, char *argv[]){
 	/* Öppnar värdet i argv[1] som textfil till variabel textfil 
 	argv[0] är programmets namn */
 	FILE * textfil = fopen(argv[1], "r");
 	char s[N], filnamn[N], restart = 'j';
-	int idNum, idCheck, switchCheck;
+	int idNum, idCheck, switchCheck, T_Counter = 0, V_Counter = 0;
 	/* Sätter teckenkodning till 1252, för korrekt utskrift av svenska tecken.
 	Blankar sedan skärmen */
 	system("chcp 1252");
@@ -109,38 +133,54 @@ int main(int argc, char *argv[]){
 		//Programmet pauserar tills användaren trycker på en valfri tangent, sedan blankas skärmen
 		system("pause");
 		system("cls");
+		//Letar upp rader som börjar med ett T
 		while(TTS(s, N, textfil)){
-			/* sscanf fungerar likt scanf, fast från en textsträng i stället för användarinmatning 
-			Här läses siffervärdet efter det första tecknet i char-variabeln s till idCheck */
-			sscanf(s+1, "%d", &idCheck);
-			//Letar efter rad som börjar på T och har siffervärdet i variabeln siffra
-			if(s[0] == 'T' && idCheck == idNum){
-				/* När rätt rad hittas skrivs radens text ut med funktionen skrivUtText
-				LT är antalet tecken innan texten som ska skrivas ut. */
-				skrivUtText(s+LT, strlen(s)-LT, 1);
-				/* Läser sifferkoden för den aktuella raden till switchCheck. 
-				Funktionen textSwitchar anropas med sifferkoden.
-				Funktionen utför olika kommandon beroende på kodens värde 
-				Om spelet ska avslutas ger funktionen returvärdet 0, annars 1 */
-				sscanf(s+6,"%d", &switchCheck);
-				if(!textSwitchar(switchCheck)){
-					skrivUtText("Spelet är Slut|Tack!", 20, 1);
-					break; //Bryter den inre while-loopen
-				}
-				/* Funktionen listaVal anropas med idNum och textfilen som parametrar.
-				Funktionen returnerar ett nytt värde som idNum sätts till. */
-				idNum = listaVal(idNum, textfil);
-				//rewind() "spolar" tillbaka textfilen till dess början.
-				rewind(textfil);
+			if(s[0] == 'T'){
+				T_Counter++;
+			}
+			if(s[0] == 'V'){
+				V_Counter++;
 			}
 		}
+	printf("Hittade %d rader med 'T' & %d rader med 'V'\n", T_Counter, V_Counter);
+	//Sätter array-structar beroede av hur många rader texter & val som hittades textfilen
+	struct aventyr texter[T_Counter];
+	struct val vtexter[V_Counter];
 	rewind(textfil);
-	//clearBuffer finns i strings_text_v1.c, och beskrivs där. Tömmer teckenbuffer.
-	clearBuffer();
-	printf("Tryck J för att spela igen: ");
-	restart = getchar();
-	//Sätter textfärgen till vit
-	system("color 7"); 
+	TTS(s, N, textfil); //För att hoppa över spelets titel på första raden
+	int t = 0, v = 0;
+	while(TTS(s, N, textfil)){
+		if(s[0] == 'T'){
+			//Sätter idNummer & sifferkod till struct
+			sscanf(s+1, "%d", &texter[t].idNum);
+			sscanf(s+6, "%d", &texter[t].kod);
+			//Skriver radens text till struct
+			strcpy(texter[t].text, s+LT);
+			//Sätter antal val som hör till texten initialt till 0
+			texter[t].antalVal = 0;
+			//Läser nästa textrad i filen
+			TTS(s, N, textfil); //Nästa rad i textfilen, som kan vara ett val
+			while(s[0] == 'V'){ //Körs medan raden är ett val
+				sscanf(s+1, "%d", &vtexter[v].idNum);
+				sscanf(s+6, "%d", &vtexter[v].nastaText);
+				strcpy(vtexter[v].text, s+LT);
+				TTS(s, N, textfil);
+				v++; //För nästa "val"-struct i arrayen
+				//Ökar antal val som hör till text med 1
+				texter[t].antalVal++;
+			}
+		t++; //För nästa "text"-struct i arrayen
+		}
+	}
+	for(int k=0;k<T_Counter;k++){
+		printf("texter[%d].idNum = %d\n", k, texter[k].idNum);
+		printf("texter[%d].antalVal = %d\n", k, texter[k].antalVal);
+	}
+	for(int k=0;k<V_Counter;k++){
+		// printf("vtexter[%d].idNum = %d\n", k, vtexter[k].idNum);
+		// printf("vtexter[%d].nastaText = %d\n", k, vtexter[k].nastaText);
+		// printf("vtexter[%d].text = %s\n", k, vtexter[k].text);
+	}
 	}
 	return 0;
 }
