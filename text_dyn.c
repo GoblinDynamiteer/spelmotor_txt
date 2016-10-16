@@ -45,12 +45,14 @@ Flertalet namnbyten av variabler
 2016-10-16
 Ökade radinläsning (macro N) till 1000 st tecken.
 Bytt parameter -> argument i kommentarer
+Ny _Bool-parameter för funktion skrivUtText, används för tabbslag i början av text, och efter radbrytning
+Ändrade hur utskrift av val ser ut, för läsbarheten skull
 
 */
 
 //Deklaration av funktioner som finns i denna fil:
 int listaVal(int a, FILE *f);
-void skrivUtText(char *string, int n, _Bool linjer);
+void skrivUtText(char *string, int n, _Bool linjer, _Bool tabb);
 _Bool textSwitchar(int s);
 
 //Debug-läge. Sätt till 1 för att få extra information utskriven från programmet
@@ -68,9 +70,10 @@ int main(int argc, char *argv[]){
 	Blankar sedan skärmen */
 	system("chcp 1252");
 	system("cls");
-	/*skrivUtText(s,n,l) --> Skriver ut n antal tecken av strängen s. 
-	Om l == 1 skrivs "linjer" ut innan och efter texten (macro L). */
-	skrivUtText("SPELMOTOR TXT", 13, 1);
+	/*skrivUtText(s,n,l,t) --> Skriver ut n antal tecken av strängen s. 
+	Om l == 1 skrivs "linjer" ut innan och efter texten (macro L). 
+	om t == 1 skrivs tabbslag ut i början av texten och efter returslag */
+	skrivUtText("SPELMOTOR TXT", 13, 1, 0);
 
 	if(textfil == NULL){ 
 		/* Programmet har inte fått en textfil som argument, eller har inte kunnat hitta/läsa textfilen i argumentet. 
@@ -117,14 +120,14 @@ int main(int argc, char *argv[]){
 			if(s[0] == 'T' && idCheck == idNum){
 				/* När rätt rad hittas skrivs radens text ut med funktionen skrivUtText
 				LT är antalet tecken innan texten som ska skrivas ut. */
-				skrivUtText(s+LT, strlen(s)-LT, 1);
+				skrivUtText(s+LT, strlen(s)-LT, 1, 0);
 				/* Läser sifferkoden för den aktuella raden till switchCheck. 
 				Funktionen textSwitchar anropas med sifferkoden.
 				Funktionen utför olika kommandon beroende på kodens värde 
 				Om spelet ska avslutas ger funktionen returvärdet 0, annars 1 */
 				sscanf(s+6,"%d", &switchCheck);
 				if(!textSwitchar(switchCheck)){
-					skrivUtText("Spelet är Slut|Tack!", 20, 1);
+					skrivUtText("Spelet är Slut|Tack!", 20, 1, 0);
 					break; //Bryter den inre while-loopen
 				}
 				/* Funktionen listaVal anropas med idNum och textfilen som parametrar.
@@ -164,9 +167,9 @@ int listaVal(int a, FILE *f){
 		if(s[0] == 'V' && checkVal == a+valRaknare){
 			/* Skriver ut val-siffra för inmatning från användare, efter skrivs valets text och nyradstecken
 			valRaknare ökar med 1 för att kontrollera om det finns fler val. */
-			printf("[%d] ", valRaknare);
-			skrivUtText(s+LT, strlen(s)-LT, 0);
-			printf("\n");
+			printf("[%d] - ", valRaknare);
+			skrivUtText(s+LT, strlen(s)-LT, 0, 1);
+			printf("\n\n");
 			valRaknare++;
 		}
 	}
@@ -210,15 +213,22 @@ Som argument får funktionen textsträngen som ska skrivas ut, en int-variabel
 med antal tecken som ska skrivas ut. 
 
 _Bool-variabeln linjer bestämmer om funktionen ska skriva ut ”rader” i  början och slutet av textblocken. */
-void skrivUtText(char *string, int n, _Bool linjer){
+void skrivUtText(char *string, int n, _Bool linjer, _Bool tabb){
 	if(linjer){
 		printf("%s", L);
 	}
+	if (tabb){
+		printf("\t");
+	}
 	//for-loop som kör 'n' antal varv
 	for(int i=0;i<n;i++){
+
 		//Om tecknet '|' hittas i textsträngen skrivs ett nyradstecken ut i stället.
 		if (string[i] == '|'){
 			printf("\n");
+			if (tabb){
+				printf("\t");
+			}
 		}
 		else{
 			//putchar skriver ut ett tecken
