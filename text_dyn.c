@@ -44,6 +44,7 @@ Flertalet namnbyten av variabler
 
 2016-10-16
 Ökade radinläsning (macro N) till 1000 st tecken.
+Bytt parameter -> argument i kommentarer
 
 */
 
@@ -56,7 +57,7 @@ _Bool textSwitchar(int s);
 _Bool debugMode = 0;
 
 
-//Parametern argv för mainfunktionen ges från kommandopromten med "spelmotortxt.exe PARAMETER"
+//Argumentet argv för mainfunktionen ges från kommandopromten med "spelmotortxt.exe PARAMETER"
 int main(int argc, char *argv[]){
 	/* Öppnar värdet i argv[1] som textfil till variabel textfil 
 	argv[0] är programmets namn */
@@ -146,7 +147,7 @@ int main(int argc, char *argv[]){
 
 
 /* Funktionen listaVal skriver ut de val som finns för det aktuella scenariot i spelet. 
-Som parametrar får funktionen textens identifikationsnummer som en int-variabel, 
+Som argument får funktionen textens identifikationsnummer som en int-variabel, 
 samt den inlästa textfilen
 Funktionen kontrollerar att användaren matar in en korrekt siffra för val, 
 och returnerar sedan det identifikationsnummer som tillhör nästa text som ska skrivas ut. */
@@ -205,7 +206,7 @@ int listaVal(int a, FILE *f){
 Mellan varje teckenutskrift sker en fördröjning på lika många millisekunder 
 som macrot TEXTHASTIGHET är definierat till. 
 
-Som parametrar får funktionen textsträngen som ska skrivas ut, en int-variabel 
+Som argument får funktionen textsträngen som ska skrivas ut, en int-variabel 
 med antal tecken som ska skrivas ut. 
 
 _Bool-variabeln linjer bestämmer om funktionen ska skriva ut ”rader” i  början och slutet av textblocken. */
@@ -234,7 +235,7 @@ void skrivUtText(char *string, int n, _Bool linjer){
 /*
 Funktionen textSwitchar används för att köra vissa kommandon som kan användas i spelet. 
 Som t.ex. att avsluta spelet eller att byta färg på texten. 
-Som parametrar får funktionen den sifferkod som finns efter den aktuella textradens identifikationsnummer. 
+Som argument får funktionen den sifferkod som finns efter den aktuella textradens identifikationsnummer. 
 Funktionen returnerar 1 eller 0 beroende på om spelet ska avslutas eller inte. */
 _Bool textSwitchar(int s){
 	if(debugMode){printf("[Switch-funktion: Nummer: %d]\n", s);}
