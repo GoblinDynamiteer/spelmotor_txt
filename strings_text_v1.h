@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 
+//Funktionsdeklarationer
 _Bool removeNewLine(char[]);
 void clearBuffer(void);
 void clearBufferFil(FILE *f);

@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
 #include <windows.h>
 #include "strings_text_v1.h" //Eget funktionsbibliotek innehållande diverse text- och textfil-funktioner
 
