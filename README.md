@@ -1,0 +1,7 @@
+SPELMOTOR TXT
+*This is a project for a course in C Programming, that I'm currently undertaking.* 
+
+The program is used to run *Multiple choice text adventure-games* which is stored in external text files. 
+Currently the games has to be written in a **very** specific format to work.
+
+A future project might/will be to build a program which the user can run to easily write new games.
