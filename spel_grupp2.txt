@@ -1,20 +1,23 @@
 Dietmar och kaffezombierna! (av Daniel, Johan, Tak-Loon, Robert & Mazen)
+!Uppdaterad text, och portad till SPELMOTOR TXT-textfilsformat
+!Man bör vara minst 15 år för att spela detta äventyr, då det innehåller brutala våldsskildringar och te-drickning.
+!De namn/personer som förekommer i texten är fiktiva.
 
-T1000|0000|Du kommer tillbaka till skolan efter helgen.|Du är lite sen, och upptäcker att kaffedrickarna beter sig konstigt.|Vad gör du?
+T1000|0000|Du kommer tillbaka till skolan efter helgen.||Du är lite sen, och upptäcker att skolans kaffedrickare|beter sig mycket konstigt.|De har ett zombie-likt, odött beteende,|mer än vanligt för en måndagsmorgon!||Vad gör du?
 V1001|1110|Dricker kaffe.
 V1002|1120|Dricker te.
 V1003|1130|Väljer att inte dricka någonting.
 
 !KAFFESPÅRET
-T1110|0000|Du provar kaffet, och börjar känna dig egendomligt odöd.|Du är nu en zombie!|Du känner en stark lust att äta hjärnsubstans...|Du ser att en av dina kamrater kommer in genom ytterdörren|Vad gör du?
-V1111|1140|Försök att äta klasskompisens hjärna.
+T1110|0000|Du provar kaffet, och börjar känna dig egendomligt odöd.|Du är nu också en zombie!|Du känner en stark lust att äta hjärnsubstans...|Du ser att en av dina kamrater kommer in genom ytterdörren||Vad gör du?
+V1111|1140|Du måste äta klasskompisens hjärna, såklart!
 V1112|1150|Försök att motstå din instinkt att äta klasskompisens hjärna.
 
 !TE - FÖRLUST
 T1120|9998|Du väljer att ta te i stället för kaffe!?|Du dog!
 
 !KAFFESPÅRET VAL 1 - ÄT HJÄRNA
-T1140|0000|Dietmar kommer in med en yxa och går till attack!!|Vad gör du?
+T1140|0000|Innan du hinner börja hasa dig mot klasskamraten|så rusar Dietmar in med en yxa och går till attack!!|Vad gör du?
 V1141|1210|Attackera Dietmar!
 V1142|1220|Fly!
 
@@ -23,12 +26,25 @@ T1150|9999|Du äter inte upp klasskompisens hjärna.|Du dog av "hjärnbrist"
 
 !KAFFESPÅRET VAL 3 - DRICK INGET
 T1130|0000|Du dricker inget kaffe!|Du förblir en fullt frisk, levande människa!|Smart!|En klasskompis kommer genom dörren. Vill du varna honom om kaffet?
-V1131|1400|Nej! Använd din kompis som testperson för att se om din teori stämmer.|Att kaffet förvandlar folk till zombier..
-V1131|1410|Varna klasskamraten!
+V1131|1400|Nej! - |Använd din kompis som testperson för att se om din teori stämmer:|Att kaffet förvandlar folk till zombier..
+V1132|1410|Varna klasskamraten!
 
+!KAFFESPÅRET KOMPIS DÖRR VAL 1- ELAK! - FÖRLUST
+T1400|9998|Din kompis tar en stor klunk kolsvart kaffe,|förvandlas omedelbart till en zombie och äter din hjärna.|Vad trodde du skulle hända?|Du dog
+
+!KAFFESPÅRET KOMPIS DÖRR VAL 2- VARNA! - FÖRLUST
+T1410|0000|Du förklarar för din (något skeptiska) kamrat att kaffet|eventuellt förvandlar folk till zombier!|Ni hinner inte diskutera länge förrän ni ser Dietmar komma|springandes mot er med en stor yxa höjd över sitt huvud.||Han utbrister: HAR NI DRUCKIT AV KAFFET?!
+V1411|1420|Utbrist förskräckt att ni inte alls har druckit kaffe!
+V1412|1430|Stå stilla och var tyst av skräck!
+
+!KAFFESPÅRET KOMPIS DÖRR DIETMAR VAL 1 - FÖRLUST
+T1420|9999|Dietmar förklarar högtljutt att det pågår en zombieinvasion:|kaffet är förgiftat med zombievirus!|Han uppmanar er att fly medans ni kan!||Ni rusar ut från lokalen och springer allt vad ni orkar därifrån.|Ni kommer inte speciellt långt dock, innan ni blir rammade i hög|fart av 12ans buss|Ni dog!
+
+!KAFFESPÅRET KOMPIS DÖRR DIETMAR VAL 2 - FÖRLUST
+T1430|9999|Dietmar tar för givet att ni har druckit av kaffet och nu är|odöda monster som vill äta hjärnor.||Han klyver er båda på mitten med yxan!|Du (och din kompis) dog!
 
 !DIETMARATTACK VAL 1 - ATTACK - FÖRLUST
-T1210|9999|Du attackerar Dietmar, och har förstås inte en chans!|Dietmar klyver dig på mitten med ett enda, kraftfullt hugg.|Du dog.
+T1210|9999|Du attackerar Dietmar, och har förstås inte en chans!|Dietmar klyver dig på mitten med ett enda, kraftfullt hugg.|Du dog (typ igen, för zombier är ju redan döda).
 
 !DIETMARATTACK VAL 2 - FLY
 T1220|0000|Du börjar hasa dig bort från Dietmar, och råkar välta kaffemaskinen.|Maskinen stoppar Dietmar temporärt, och du kommer in i lunchrummet.|Det är stort tumult i klassrummet, zombies och människor i storbråk!|Vad gör du?
