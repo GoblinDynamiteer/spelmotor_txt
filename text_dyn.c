@@ -169,7 +169,7 @@ int listaVal(int a, FILE *f){
 			valRaknare ökar med 1 för att kontrollera om det finns fler val. */
 			printf("[%d] - ", valRaknare);
 			skrivUtText(s+LT, strlen(s)-LT, 0, 1);
-			printf("\n\n");
+			printf("\n");
 			valRaknare++;
 		}
 	}
