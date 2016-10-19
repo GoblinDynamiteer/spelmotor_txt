@@ -7,22 +7,21 @@
 #define TEXTHASTIGHET 3		//Antal millisekunder att pausera mellan varje teckenutskrift i funktionen skrivUtText
 #define LT 11	//Antal tecken på rad i textfilen, innan text som ska visas, ex: "V1001|2100|Text som ska visas"
 
-#define FRO     "\x1b[31m"
-#define FGR   "\x1b[32m"
-#define FGU  "\x1b[33m"
-#define FBL    "\x1b[34m"
-#define ANSI_COLOR_MAGENTA "\x1b[35m"
-#define FCY    "\x1b[36m"
-#define F   "\x1b[0m"
-
-
+//Definitioner för enskild tecken-färg
+#define FRO "\x1b[31m" 	//Röd
+#define FGR "\x1b[32m" 	//Grön
+#define FGU "\x1b[33m" 	//gul
+#define FBL "\x1b[34m" 	//Mörkblå
+#define FCY "\x1b[36m" 	//Ljusblå (cyan)
+#define TSU "\x1b[4m" 		//Understruken
+#define F "\x1b[0m" 			//Återställer färg
 
 /*
 SPELMOTOR TXT
 Program för att köra speläventyr från textfiler.
 Av Johan Kämpe
 
-Branch för test av färgkodning av enskild text.
+!! Branch för test av färgkodning av enskild text.
 
 Kommentarer visas över eller till höger om det det beskriver i koden.
 
@@ -40,7 +39,7 @@ Radbrytningar i text, dessa triggas med tecknet | i textfilen
 Funktion för switchar
 Test för om textfilen existerar
 Tagit bort onödig variabel "bokstav", behövs ej för att fånga upp första bokstaven i textraderna
-Det går att starta spelet med en textfil som argument, då laddas denna fil ex: 'text_dyn.exe piratspel.txt'
+Det går att starta spelet med en textfil som argument, då laddas denna fil ex: 'text_dyn.exe spel_pirat.txt'
 Namngivning av program: SPELMOTOR TXT
 Borttagning av onödiga deklarerade variabler som inte användes.
 
@@ -67,6 +66,7 @@ Ny _Bool-parameter för funktion skrivUtText, används för tabbslag i början av te
 Fixade kontroll för inmatning av användarval, programmet slutar nu inte att fungera om användaren matar in något annat än en siffra
 Lade till funktionalitet för att läsa in val från textfil som inte ligger i ordning, eller efter texten de tillhör
 Lade till sifferkod 9992, för färgbyte av text till vit
+Lagt till stöd för enskilt textfärg
 
 */
 
@@ -204,7 +204,7 @@ int listaVal(int a, FILE *f){
 			printf("%sAnge val genom at slå in en siffra: ",L);
 		}
 		else {
-			printf("%sFel val!\nAnge val genom at slå in en siffra: ",L);
+			printf("%s" FRO "Fel val!" F "\nAnge val genom at slå in en siffra: ",L);
 		}
 		//Läser in text från användaren med radInput
 		radInput(valInput, 2);
@@ -256,7 +256,6 @@ void skrivUtText(char *string, int n, _Bool linjer, _Bool tabb){
 	}
 	//for-loop som kör 'n' antal varv
 	for(int i=0;i<n;i++){
-
 		//Om tecknet '|' hittas i textsträngen skrivs ett nyradstecken ut i stället.
 		if (string[i] == '|'){
 			printf("\n");
@@ -264,20 +263,36 @@ void skrivUtText(char *string, int n, _Bool linjer, _Bool tabb){
 				printf("\t");
 			}
 		}
+		/* Om tecknet "<" hittas i textsträngen innebär det att texten ska formateras på ett visst sätt 
+		Ex: Du är en stor <u<<r<brunbjörn> i en djup mörk skog, vad gör du?
+		"brunbjörn" kommer formateras till röd understruken text */
 		else if (string[i] == '<'){
-			switch(string[++i]){
-				case 'r':
+			switch(string[++i]){ //i ökar med 1 innan det används innan string används i switch-satsen
+				case 'r': //Röd text
 					printf(FRO);
+					i++; //i ökar med 1 i samtliga cases, för att hoppa över nästa "<"
+					break;
+				case 'u': //Understruken text
+					printf(TSU);
 					i++;
 					break;
-				case 'c':
+				case 'c': //Ljusblå text
 					printf(FCY);
+					i++;
+					break;
+				case 'g': //Grön text
+					printf(FGR);
+					i++;
+					break;
+				case 'y': //Gul text
+					printf(FGU);
 					i++;
 					break;
 			}
 		}
+		//Om '>' hittas textsträngen i textsträngen innebär det att speciell formattering av text ska avslutas
 		else if (string[i] == '>'){
-			printf(F);
+			printf(F); //F är macrot för '\x1b[0m' som återställer textformattering
 		}
 		else{
 			//putchar skriver ut ett tecken
