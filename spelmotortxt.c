@@ -7,10 +7,22 @@
 #define TEXTHASTIGHET 3		//Antal millisekunder att pausera mellan varje teckenutskrift i funktionen skrivUtText
 #define LT 11	//Antal tecken på rad i textfilen, innan text som ska visas, ex: "V1001|2100|Text som ska visas"
 
+#define FRO     "\x1b[31m"
+#define FGR   "\x1b[32m"
+#define FGU  "\x1b[33m"
+#define FBL    "\x1b[34m"
+#define ANSI_COLOR_MAGENTA "\x1b[35m"
+#define FCY    "\x1b[36m"
+#define F   "\x1b[0m"
+
+
+
 /*
 SPELMOTOR TXT
 Program för att köra speläventyr från textfiler.
 Av Johan Kämpe
+
+Branch för test av färgkodning av enskild text.
 
 Kommentarer visas över eller till höger om det det beskriver i koden.
 
@@ -81,8 +93,9 @@ int main(int argc, char *argv[]){
 	/*skrivUtText(s,n,l,t) --> Skriver ut n antal tecken av strängen s. 
 	Om l == 1 skrivs "linjer" ut innan och efter texten (macro L). 
 	om t == 1 skrivs tabbslag ut i början av texten och efter returslag */
+	printf(FCY);
 	skrivUtText("SPELMOTOR TXT", 13, 1, 0);
-
+	printf(F);
 	if(textfil == NULL){ 
 		/* Programmet har inte fått en textfil som argument, eller har inte kunnat hitta/läsa textfilen i argumentet. 
 		Användaren uppmanas att skriva in ett namn för textfil att spela med. */
@@ -176,7 +189,7 @@ int listaVal(int a, FILE *f){
 		if(s[0] == 'V' && checkVal == a+valRaknare){
 			/* Skriver ut val-siffra för inmatning från användare, efter skrivs valets text och nyradstecken
 			valRaknare ökar med 1 för att kontrollera om det finns fler val. */
-			printf("[%d] - ", valRaknare);
+			printf(FGR"[%d]"F"  - ", valRaknare);
 			skrivUtText(s+LT, strlen(s)-LT, 0, 1);
 			printf("\n");
 			valRaknare++;
@@ -250,6 +263,21 @@ void skrivUtText(char *string, int n, _Bool linjer, _Bool tabb){
 			if (tabb){
 				printf("\t");
 			}
+		}
+		else if (string[i] == '<'){
+			switch(string[++i]){
+				case 'r':
+					printf(FRO);
+					i++;
+					break;
+				case 'c':
+					printf(FCY);
+					i++;
+					break;
+			}
+		}
+		else if (string[i] == '>'){
+			printf(F);
 		}
 		else{
 			//putchar skriver ut ett tecken
