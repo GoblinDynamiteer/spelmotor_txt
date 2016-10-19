@@ -48,6 +48,9 @@ Bytt parameter -> argument i kommentarer
 Ny _Bool-parameter för funktion skrivUtText, används för tabbslag i början av text, och efter radbrytning
 Ändrade hur utskrift av val ser ut, för läsbarheten skull
 
+2016-10-19
+Fixade kontroll för inmatning av användarval, programmet slutar nu inte att fungera om användaren matar in något annat än en siffra
+
 */
 
 //Deklaration av funktioner som finns i denna fil:
@@ -69,7 +72,7 @@ int main(int argc, char *argv[]){
 	/* Sätter teckenkodning till 1252, för korrekt utskrift av svenska tecken.
 	Blankar sedan skärmen */
 	system("chcp 1252");
-	system("cls");
+	//system("cls");
 	/*skrivUtText(s,n,l,t) --> Skriver ut n antal tecken av strängen s. 
 	Om l == 1 skrivs "linjer" ut innan och efter texten (macro L). 
 	om t == 1 skrivs tabbslag ut i början av texten och efter returslag */
@@ -138,8 +141,6 @@ int main(int argc, char *argv[]){
 			}
 		}
 	rewind(textfil);
-	//clearBuffer finns i strings_text_v1.c, och beskrivs där. Tömmer teckenbuffer.
-	clearBuffer();
 	printf("Tryck J för att spela igen: ");
 	restart = getchar();
 	//Sätter textfärgen till vit
@@ -156,6 +157,7 @@ Funktionen kontrollerar att användaren matar in en korrekt siffra för val,
 och returnerar sedan det identifikationsnummer som tillhör nästa text som ska skrivas ut. */
 int listaVal(int a, FILE *f){
 	int valRaknare = 1, checkVal, anvandareVal = 0, nastaIdNum;
+	char valInput[2];
 	_Bool korrektVal = 1;
 	char s[N]; //Likt variabeln s i main-funktionen
 	while(TTS(s, N, f)){
@@ -183,7 +185,18 @@ int listaVal(int a, FILE *f){
 		else {
 			printf("%sFel val!\nAnge val genom at slå in en siffra: ",L);
 		}
-		scanf("%d", &anvandareVal);
+		//Läser in text från användaren med radInput
+		radInput(valInput, 2);
+		/*Testar om första tecknet användaren har matat in är en siffra
+		I så fall scannas siffran in till variabeln anvandareVal, annars sätts anvandareVal till -1
+		för att låta do/while-loopen gå ännu ett varv */
+		if(isdigit(valInput[0])){
+			sscanf(valInput, "%d", &anvandareVal);
+		}
+		else{
+			anvandareVal = -1;
+			
+		}
 		//korrektVal sätts till 0, för att skriva ut "Fel val!" ovan, om användaren skulle skriva in ett felaktigt val
 		korrektVal = 0; 
 	//Det inmatade värdet från användaren ska vara mellan 1 och värdet i valRaknare
