@@ -50,6 +50,7 @@ Ny _Bool-parameter för funktion skrivUtText, används för tabbslag i början av te
 
 2016-10-19
 Fixade kontroll för inmatning av användarval, programmet slutar nu inte att fungera om användaren matar in något annat än en siffra
+Lade till funktionalitet för att läsa in val från textfil som inte ligger i ordning, eller efter texten de tillhör
 
 */
 
@@ -72,7 +73,7 @@ int main(int argc, char *argv[]){
 	/* Sätter teckenkodning till 1252, för korrekt utskrift av svenska tecken.
 	Blankar sedan skärmen */
 	system("chcp 1252");
-	//system("cls");
+	system("cls");
 	/*skrivUtText(s,n,l,t) --> Skriver ut n antal tecken av strängen s. 
 	Om l == 1 skrivs "linjer" ut innan och efter texten (macro L). 
 	om t == 1 skrivs tabbslag ut i början av texten och efter returslag */
@@ -143,6 +144,7 @@ int main(int argc, char *argv[]){
 	rewind(textfil);
 	printf("Tryck J för att spela igen: ");
 	restart = getchar();
+	clearBuffer();
 	//Sätter textfärgen till vit
 	system("color 7"); 
 	}
@@ -160,6 +162,7 @@ int listaVal(int a, FILE *f){
 	char valInput[2];
 	_Bool korrektVal = 1;
 	char s[N]; //Likt variabeln s i main-funktionen
+	rewind(f);
 	while(TTS(s, N, f)){
 		//Läser in den aktuella radens identifikationsnummer till checkVal
 		sscanf(s+1, "%d", &checkVal);
@@ -173,6 +176,7 @@ int listaVal(int a, FILE *f){
 			skrivUtText(s+LT, strlen(s)-LT, 0, 1);
 			printf("\n");
 			valRaknare++;
+			rewind(f);
 		}
 	}
 	valRaknare--; //Backar valRaknare med 1 (sista valet hittades inte)
