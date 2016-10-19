@@ -3,16 +3,16 @@ Björnspelet (Default-äventyr)
 !https://github.com/GoblinDynamiteer/spelmotor_txt
 
 !INITIAL TEXT
-T1000|0000|Du är en stor <r<brunbjörn> i en djup mörk skog, vad gör du?
-V1001|2100|Ät blåbär!
+T1000|0000|Du är en stor <u<<r<brunbjörn> i en djup mörk skog, vad gör du?
+V1001|2100|Ät <c<blåbär!>
 V1002|2200|Gå i ide...
-V1003|2300|Leta efter myror att käka.
-V1004|2400|Ryt!
+V1003|2300|Leta efter <y<myror> att käka.
+V1004|2400|<u<Ryt!>
 
 !BLÅBÄRSVALET
 T2100|0000|Du hittar inga blåbär, <r<vafalls?!>|Har någon annan björn ätit dem?|Vad gör du?
-V2101|2500|Leta upp <c<blåbärtjuvsbjörnen!>
-V2102|2600|Meh, inte värt besväret. Käka bark istället.
+V2101|2500|Leta upp <c<blåbärtjuv-björnen!>
+V2102|2600|Meh, inte värt besväret. Käka <g<bark> istället.
 
 !BLÅBÄRSVALET - LETA RIVAL
 T2500|9995|Du får upp ett doftspår av den andra björnen.|Du hittar den i full färd med att äta (dina) blåbär!|Du ser bokstavligen rött! Vad gör du?
@@ -31,23 +31,23 @@ T4100|9998|Du lommar iväg med svansstumpen sorgset hängande.|Nåja, blåbär är ing
 T2200|9996|Du går i ide: <b<ZzzzzZzzzzz.>|Bra björn, du vann!
 
 !MYROR
-T2300|0000|Myror är inget vidare, smakar surt.|Men fungerar i krig.|Var vill du leta efter myror?
+T2300|0000|Myror är inget vidare, smakar <y<surt>.|Men fungerar i krig.|Var vill du leta efter myror?
 V2301|3100|Leta under det stora stenblocket du ser framför dig.
-V2302|3200|I myrstacken, duh!|Det borde ju finnas en myriad av myror där.
+V2302|3200|I myrstacken, duh!|Det borde ju finnas en <u<myriad> av myror där.
 
 !MYROR-STACK - FÖRLUST
-T3200|9999|BOOOM!|Det låg en gammal kvarglömd sprängmina i myrstacken.|Du förlorar!
+T3200|9999|<r<BOOOM!>|Det låg en gammal kvarglömd sprängmina i myrstacken.|Du förlorar!
 
 !MYROR-BLOCK - VINST
-T3100|9999|WOW! Du har aldrig sett så många myror förut!|Du äter dig mätt och somnar gott!|Du är en bra björn, du vann!
+T3100|9999|<c<WOW!> Du har aldrig sett så många myror förut!|Du äter dig mätt och somnar gott!|Du är en bra björn, du vann!
 
 !RYT
-T2400|0000|Du ryter mäktigt!|Skogens smådjur skakar av skräck!|Du är mycket nöjd med dig själv.
+T2400|0000|Du ryter mäktigt!|Skogens smådjur <r<skakar av skräck!>|Du är <u<mycket nöjd> med dig själv.
 V2401|2410|Ryt en gång till, fast högre!
-V2402|2100|Allt det här rytandet gör en björn hungrig, leta efter blåbär!
+V2402|2100|Allt det här rytandet gör en björn hungrig, leta efter <c<blåbär!>
 
 !RYT IGEN
-T2410|0000|Du ryter igen, och tar i ändå från klospetsarna!||Men vad är detta?|En Ärkestor Älg kommer dundrande emot dig, tänk snabbt!
+T2410|0000|Du ryter igen, och tar i ändå från klospetsarna!||Men vad är detta?|En <g<Ärkestor Älg> kommer dundrande emot dig, tänk snabbt!
 V2411|2420|Visa vem som verkligen är skogens konung|Full fart framåt!
 V2412|2430|Ställ dig raklång upp på baktassarna.|Stirra björnilsket på älgen, och ryt!
 V2413|2440|Fly!|De där hornen ser vassa ut!
