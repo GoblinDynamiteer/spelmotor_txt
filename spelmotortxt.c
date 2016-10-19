@@ -12,6 +12,9 @@ SPELMOTOR TXT
 Program för att köra speläventyr från textfiler.
 Av Johan Kämpe
 
+Kommentarer visas över eller till höger om det det beskriver i koden.
+
+
 Ändringslogg:
 2016-10-10
 Initial release
@@ -51,6 +54,7 @@ Ny _Bool-parameter för funktion skrivUtText, används för tabbslag i början av te
 2016-10-19
 Fixade kontroll för inmatning av användarval, programmet slutar nu inte att fungera om användaren matar in något annat än en siffra
 Lade till funktionalitet för att läsa in val från textfil som inte ligger i ordning, eller efter texten de tillhör
+Lade till sifferkod 9992, för färgbyte av text till vit
 
 */
 
@@ -94,13 +98,13 @@ int main(int argc, char *argv[]){
 	}
 
 	if(textfil == NULL){ 
-		//Om inmatad fil från använder inte kan läsas försöker programmet ladda in standard-text definierad i macrot TEXTFIL
+		//Om inmatad fil från användaren inte kan läsas försöker programmet ladda in standard-text definierad i macrot TEXTFIL.
 		printf("Inmatad fil: '%s' kunde inte läsas.\nLäser in standard-spel %s", filnamn, TEXTFIL);
 		textfil = fopen(TEXTFIL, "r");
 	}
 
 	if(textfil == NULL){
-		//Om TEXTFIL inte kunde läsas in avslutas programmet
+		//Om TEXTFIL inte kunde läsas in avslutas programmet.
 		printf("Standardfilen '%s' kunde inte hittas. Programmet avlutas", TEXTFIL);
 		return 0;
 	}
@@ -113,17 +117,17 @@ int main(int argc, char *argv[]){
 		//TTS finns i strings_text_v1.c, och beskrivs där. Textfilens första rad, som ska vara spelets titel, läses till variabeln s.
 		TTS(s, N, textfil);
 		printf("%sSpel som kommer köras är: %s %s", L, s, L);
-		//Programmet pauserar tills användaren trycker på en valfri tangent, sedan blankas skärmen
+		//Programmet pauserar tills användaren trycker på en valfri tangent, sedan blankas skärmen.
 		system("pause");
 		system("cls");
 		while(TTS(s, N, textfil)){
 			/* sscanf fungerar likt scanf, fast från en textsträng i stället för användarinmatning 
-			Här läses siffervärdet efter det första tecknet i char-variabeln s till idCheck */
+			Här läses siffervärdet efter det första tecknet i char-variabeln 's' till idCheck */
 			sscanf(s+1, "%d", &idCheck);
-			//Letar efter rad som börjar på T och har siffervärdet i variabeln siffra
+			//Letar efter rad som börjar på T och har värdet i variabeln 'idNum'
 			if(s[0] == 'T' && idCheck == idNum){
 				/* När rätt rad hittas skrivs radens text ut med funktionen skrivUtText
-				LT är antalet tecken innan texten som ska skrivas ut. */
+				macrot LT är antalet tecken som finns på raden innan texten som ska skrivas ut. */
 				skrivUtText(s+LT, strlen(s)-LT, 1, 0);
 				/* Läser sifferkoden för den aktuella raden till switchCheck. 
 				Funktionen textSwitchar anropas med sifferkoden.
@@ -271,6 +275,10 @@ _Bool textSwitchar(int s){
 		case 9999:
 			//Spelet avslutas.
 			return 0; 
+		case 9992:
+			//Spelets text byter färg till vit, standardfärg.
+			system("color 07");
+			return 1;
 		case 9993:
 			//Spelets text byter färg till blå.
 			system("color 09");
