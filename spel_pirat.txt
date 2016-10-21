@@ -2,7 +2,7 @@ Piratkapten! (av Johan Kämpe)
 !Speläventyr för SPELMOTOR TXT
 !De namn/personer som förekommer i texten är fiktiva.
 
-1000|0000|Arrrghhh!||Du är en <r<råbarkad kapten> på ett piratfartyg, någon gång på 1700-talet.|Vad vill du göra?
+T1000|0000|Arrrghhh!||Du är en <r<råbarkad kapten> på ett piratfartyg, någon gång på 1700-talet.|Vad vill du göra?
 V1001|1110|Olja in ditt träben.
 V1002|1120|Drick rom!.
 V1003|1130|Träna prickskytte med din nystulna flintlåspistol!.
