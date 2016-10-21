@@ -79,7 +79,8 @@ Ny _Bool-parameter för funktion skrivUtText, används för tabbslag i början av te
 Ändrade hur utskrift av val ser ut, för läsbarheten skull
 
 2016-10-19
-Fixade kontroll för inmatning av användarval, programmet slutar nu inte att fungera om användaren matar in något annat än en siffra
+Fixade kontroll för inmatning av användarval:
+	programmet slutar nu inte att fungera om användaren matar in något annat än en siffra
 Lade till funktionalitet för att läsa in val från textfil som inte ligger i ordning, eller efter texten de tillhör
 Lade till sifferkod 9992, för färgbyte av text till vit
 Lagt till stöd för enskild teckenfärg och formatering
@@ -103,7 +104,7 @@ _Bool debugMode = 0;
 int main(int argc, char *argv[]){
 	/* Öppnar värdet i argv[1] som textfil till variabel textfil 
 	argv[0] är programmets namn */
-	FILE * textfil = fopen(argv[1], "r");
+	FILE * textfil = fopen(argv[1], "r"); //r = read
 	char s[N], filnamn[N], restart = 'j';
 	int idNum, idCheck, switchCheck;
 	/* Sätter teckenkodning till 1252, för korrekt utskrift av svenska tecken.
@@ -113,9 +114,9 @@ int main(int argc, char *argv[]){
 	/*skrivUtText(s,n,l,t) --> Skriver ut n antal tecken av strängen s. 
 	Om l == 1 skrivs "linjer" ut innan och efter texten (macro L). 
 	om t == 1 skrivs tabbslag ut i början av texten och efter returslag */
-	printf(FBL); //Skriver ut 
-	skrivUtText("SPELMOTOR TXT", 13, 1, 0);
-	printf(FR);
+	printf(FBL); //Blå teckenfärg
+	skrivUtText("SPELMOTOR TXT", 13, 1, 0); //Programmets namn
+	printf(FR); //Slut teckenformatering
 	if(textfil == NULL){ 
 		/* Programmet har inte fått en textfil som argument, 
 		eller har inte kunnat hitta/läsa textfilen i argumentet. 
@@ -154,7 +155,7 @@ int main(int argc, char *argv[]){
 		printf(L "Spel som kommer köras är: "FCY"%s"FR L, s);
 		//Programmet pauserar tills användaren trycker på en valfri tangent, sedan blankas skärmen.
 		system("pause");
-		system("cls");
+		system("cls"); //Clearscreen
 		while(TTS(s, N, textfil)){
 			/* sscanf fungerar likt scanf, fast från en textsträng i stället för användarinmatning 
 			Här läses siffervärdet efter det första tecknet i char-variabeln 's' till idCheck */
@@ -170,7 +171,7 @@ int main(int argc, char *argv[]){
 				Om spelet ska avslutas ger funktionen returvärdet 0, annars 1 */
 				sscanf(s+6,"%d", &switchCheck);
 				if(!textSwitchar(switchCheck)){
-					skrivUtText("Spelet är Slut|Tack!", 20, 1, 0);
+					skrivUtText("Spelet är Slut|Tack!", 20, 1, 0); // | blir ny rad med funktionen
 					break; //Bryter den inre while-loopen
 				}
 				/* Funktionen listaVal anropas med idNum och textfilen som parametrar.
@@ -183,7 +184,7 @@ int main(int argc, char *argv[]){
 	rewind(textfil);
 	printf("Tryck J för att spela igen: ");
 	restart = getchar();
-	clearBuffer();
+	clearBuffer(); //Tömmer teckenbuffer
 	//Sätter textfärgen till vit
 	system("color 7"); 
 	}
