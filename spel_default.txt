@@ -7,7 +7,7 @@ T1000|0000|Du är en stor <u<<r<brunbjörn> i en djup mörk skog, vad gör du?
 V1001|2100|Ät <c<blåbär!>
 V1002|2200|Gå i ide...
 V1003|2300|Leta efter <y<myror> att käka.
-V1004|2400|<u<Ryt!>
+V1004|2400|<u<Ryt>!
 
 !BLÅBÄRSVALET
 T2100|0000|Du hittar inga blåbär, <r<vafalls?!>|Har någon annan björn ätit dem?|Vad gör du?
