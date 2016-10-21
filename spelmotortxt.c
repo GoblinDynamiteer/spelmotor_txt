@@ -4,24 +4,40 @@
 #define N 1000	//Längd för char-variabler, och parameter till vissa funktioner
 #define TEXTFIL "spel_default.txt" //Standardtextfil med "Björnspelet"
 #define L "\n-----------------------------------------------------------------\n" //För utskrift av linjer med printf
-#define TEXTHASTIGHET 3		//Antal millisekunder att pausera mellan varje teckenutskrift i funktionen skrivUtText
+#define TEXTHASTIGHET 15		//Antal millisekunder att pausera mellan varje teckenutskrift i funktionen skrivUtText
 #define LT 11	//Antal tecken på rad i textfilen, innan text som ska visas, ex: "V1001|2100|Text som ska visas"
 
-//Definitioner för enskild tecken-färg
-#define FRO "\x1b[31m" 	//Röd
-#define FGR "\x1b[32m" 	//Grön
-#define FGU "\x1b[33m" 	//gul
-#define FBL "\x1b[34m" 	//Mörkblå
-#define FCY "\x1b[36m" 	//Ljusblå (cyan)
-#define TSU "\x1b[4m" 		//Understruken
-#define F "\x1b[0m" 			//Återställer färg
+/*Definitioner för textformatering, skriv ut i printf-satser
+
+ANSI-escape-koder: Används för t.ex formatering av text
+ESC + [ + kod används för att mata in ANSI-escape-koder
+\033 (oktalt) är escape-koden för tecknet Escape, det går också att använda \x1b för det hexadecimala värdet
+
+ANSI-escape + n m 
+där n är 31 - 37: Sätter olika färger på texten
+där n är 91 - 97: Sätter olika färger på texten, högintensivt
+där n är 40 - 47: Sätter olika färger på textens bakgrund
+där n är 0: Återställer
+m används för att indikera slut på formateringskoder
+
+Exempel: \033[91;43m TEXT ger intensiv röd teckenfärg med gul bakgrund
+
+Källa:
+https://en.wikipedia.org/wiki/Escape_character 
+https://en.wikipedia.org/wiki/ANSI_escape_code*/
+
+#define FRO "\033[91m" 	//Röd textformatering (31 är mörk)
+#define FGR "\033[32m" 	//Grön textformatering
+#define FGU "\033[33m" 	//Gul textformatering
+#define FBL "\033[94m" 	//Blå textformatering (34 är väldigt mörk)
+#define FCY "\033[36m" 	//Cyan (Ungefär ljusblå) textformatering
+#define TSU "\033[4m" 		//Understruken textformatering
+#define FR "\033[0m" 		//Återställer textformatering
 
 /*
 SPELMOTOR TXT
 Program för att köra speläventyr från textfiler.
 Av Johan Kämpe
-
-!! Branch för test av färgkodning av enskild text.
 
 Kommentarer visas över eller till höger om det det beskriver i koden.
 
@@ -66,7 +82,10 @@ Ny _Bool-parameter för funktion skrivUtText, används för tabbslag i början av te
 Fixade kontroll för inmatning av användarval, programmet slutar nu inte att fungera om användaren matar in något annat än en siffra
 Lade till funktionalitet för att läsa in val från textfil som inte ligger i ordning, eller efter texten de tillhör
 Lade till sifferkod 9992, för färgbyte av text till vit
-Lagt till stöd för enskilt textfärg
+Lagt till stöd för enskild teckenfärg och formatering
+
+2016-10-21
+Ändrat vissa teckenkoder för textformatering, så färgen blir ljusare vid utskrift
 
 */
 
@@ -78,7 +97,6 @@ _Bool textSwitchar(int s);
 //Debug-läge. Sätt till 1 för att få extra information utskriven från programmet
 _Bool debugMode = 0;
 
-
 //Argumentet argv för mainfunktionen ges från kommandopromten med "spelmotortxt.exe PARAMETER"
 int main(int argc, char *argv[]){
 	/* Öppnar värdet i argv[1] som textfil till variabel textfil 
@@ -89,17 +107,19 @@ int main(int argc, char *argv[]){
 	/* Sätter teckenkodning till 1252, för korrekt utskrift av svenska tecken.
 	Blankar sedan skärmen */
 	system("chcp 1252");
-	system("cls");
+	system("cls"); //Behövs också för att ANSI-escape-koder ska fungera
 	/*skrivUtText(s,n,l,t) --> Skriver ut n antal tecken av strängen s. 
 	Om l == 1 skrivs "linjer" ut innan och efter texten (macro L). 
 	om t == 1 skrivs tabbslag ut i början av texten och efter returslag */
-	printf(FCY);
+	printf(FBL); //Skriver ut 
 	skrivUtText("SPELMOTOR TXT", 13, 1, 0);
-	printf(F);
+	printf(FR);
 	if(textfil == NULL){ 
-		/* Programmet har inte fått en textfil som argument, eller har inte kunnat hitta/läsa textfilen i argumentet. 
+		/* Programmet har inte fått en textfil som argument, 
+		eller har inte kunnat hitta/läsa textfilen i argumentet. 
 		Användaren uppmanas att skriva in ett namn för textfil att spela med. */
-		printf("Ange filnamn (med filändelse) för textfil.\nMata in EOF (Ctrl+Z) för att avbryta\nOm ingen fil anges laddas %s\n\nTextfil: ",TEXTFIL);
+		printf("Ange filnamn (med filändelse) för textfil.\nMata in EOF (Ctrl+Z) för att avbryta.\n"
+			"Om ingen fil anges laddas %s\n\nTextfil: ",TEXTFIL);
 		//radInput finns i strings_text_v1.c, och beskrivs där.
 		if(radInput(filnamn, N)){
 			textfil = fopen(filnamn, "r");
@@ -129,7 +149,7 @@ int main(int argc, char *argv[]){
 		idNum = 1000;
 		//TTS finns i strings_text_v1.c, och beskrivs där. Textfilens första rad, som ska vara spelets titel, läses till variabeln s.
 		TTS(s, N, textfil);
-		printf("%sSpel som kommer köras är: %s %s", L, s, L);
+		printf(L "Spel som kommer köras är: "FCY"%s"FR L, s);
 		//Programmet pauserar tills användaren trycker på en valfri tangent, sedan blankas skärmen.
 		system("pause");
 		system("cls");
@@ -189,7 +209,7 @@ int listaVal(int a, FILE *f){
 		if(s[0] == 'V' && checkVal == a+valRaknare){
 			/* Skriver ut val-siffra för inmatning från användare, efter skrivs valets text och nyradstecken
 			valRaknare ökar med 1 för att kontrollera om det finns fler val. */
-			printf(FGR"[%d]"F"  - ", valRaknare);
+			printf(FGR"[%d]"FR"  - ", valRaknare); //Valnumren skrivs ut med grön text
 			skrivUtText(s+LT, strlen(s)-LT, 0, 1);
 			printf("\n");
 			valRaknare++;
@@ -201,10 +221,10 @@ int listaVal(int a, FILE *f){
 	//Do-sats som upprepas om användaren inte matar in ett korrekt val.
 	do{
 		if(korrektVal){ //Triggar alltid första gången
-			printf("%sAnge val genom at slå in en siffra: ",L);
+			printf(L "Ange val genom at slå in en siffra: ");
 		}
 		else {
-			printf("%s" FRO "Fel val!" F "\nAnge val genom at slå in en siffra: ",L);
+			printf(L FRO "Fel val!" FR "\nAnge val genom at slå in en siffra: ");//Fel val! skrivs i rött
 		}
 		//Läser in text från användaren med radInput
 		radInput(valInput, 2);
@@ -248,10 +268,10 @@ med antal tecken som ska skrivas ut.
 
 _Bool-variabeln linjer bestämmer om funktionen ska skriva ut ”rader” i  början och slutet av textblocken. */
 void skrivUtText(char *string, int n, _Bool linjer, _Bool tabb){
-	if(linjer){
-		printf("%s", L);
+	if(linjer){ //Skriver ut en linje om funktionen har anropats med linjer=1
+		printf(L);
 	}
-	if (tabb){
+	if (tabb){ //Skriver ut ett tabbtecken om funktionen har anropats med tabb=1
 		printf("\t");
 	}
 	//for-loop som kör 'n' antal varv
@@ -260,7 +280,7 @@ void skrivUtText(char *string, int n, _Bool linjer, _Bool tabb){
 		if (string[i] == '|'){
 			printf("\n");
 			if (tabb){
-				printf("\t");
+				printf("\t"); //Skriver ut ett tabbtecken efter ny rad om funktionen har anropats med tabb=1
 			}
 		}
 		/* Om tecknet "<" hittas i textsträngen innebär det att texten ska formateras på ett visst sätt 
@@ -276,7 +296,7 @@ void skrivUtText(char *string, int n, _Bool linjer, _Bool tabb){
 					printf(TSU);
 					i++;
 					break;
-				case 'c': //Ljusblå text
+				case 'c': //Cyan text
 					printf(FCY);
 					i++;
 					break;
@@ -288,13 +308,17 @@ void skrivUtText(char *string, int n, _Bool linjer, _Bool tabb){
 					printf(FGU);
 					i++;
 					break;
+				case 'b': //Gul text
+					printf(FBL);
+					i++;
+					break;
 			}
 		}
-		//Om '>' hittas textsträngen i textsträngen innebär det att speciell formattering av text ska avslutas
+		//Om '>' hittas textsträngen i textsträngen innebär det att speciell formatering av text ska avslutas
 		else if (string[i] == '>'){
-			printf(F); //F är macrot för '\x1b[0m' som återställer textformattering
+			printf(FR); //FR är macrot för '\033[0m' som återställer textformatering
 		}
-		else{
+		else{//triggar om tecknet är ett vanligt tecken att skriva ut
 			//putchar skriver ut ett tecken
 			putchar(string[i]);
 		}
@@ -302,7 +326,7 @@ void skrivUtText(char *string, int n, _Bool linjer, _Bool tabb){
 		Sleep(TEXTHASTIGHET);
 	}
 	if(linjer){ 
-		printf("%s", L);
+		printf(L);
 	}
 }
 
@@ -319,31 +343,31 @@ _Bool textSwitchar(int s){
 			//Spelet avslutas.
 			return 0; 
 		case 9992:
-			//Spelets text byter färg till vit, standardfärg.
+			//All text byter färg till vit, standardfärg.
 			system("color 07");
 			return 1;
 		case 9993:
-			//Spelets text byter färg till blå.
+			//All text byter färg till blå.
 			system("color 09");
 			return 1;
 		case 9994:
-			//Spelets text byter färg till grön.
+			//All text byter färg till grön.
 			system("color 02");
 			return 1;
 		case 9995:
-			//Spelets text byter färg till röd.
+			//All text byter färg till röd.
 			system("color 04");
 			return 1;
 		case 9996:
-			//Spelets text byter färg till blå och spelet avslutas.
+			//All text byter färg till blå och spelet avslutas.
 			system("color 09");
 			return 0;
 		case 9997:
-			//Spelets text byter färg till grön och spelet avslutas.
+			//All text byter färg till till grön och spelet avslutas.
 			system("color 02");
 			return 0;
 		case 9998:
-			//Spelets text byter färg till röd och spelet avslutas.
+			//All text byter färg till öd och spelet avslutas.
 			system("color 04");
 			return 0;
 			//0000 används för att enbart skriva ut texten, utan extra funktionalitet.
