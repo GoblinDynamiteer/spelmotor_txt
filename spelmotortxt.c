@@ -1,5 +1,5 @@
 #include <windows.h>
-#include "strings_text_v1.h" //Eget funktionsbibliotek innehållande diverse text- och textfil-funktioner
+#include "funk.h" //Eget funktionsbibliotek innehållande diverse text- och textfil-funktioner
 
 #define N 1000	//Längd för char-variabler, och parameter till vissa funktioner
 #define TEXTFIL "spel_default.txt" //Standardtextfil med "Björnspelet"
@@ -86,6 +86,8 @@ Lagt till stöd för enskild teckenfärg och formatering
 
 2016-10-21
 Ändrat vissa teckenkoder för textformatering, så färgen blir ljusare vid utskrift
+Namnbyte av fil strings_text_v1.c till funk.c
+Namnbyte av fil strings_text_v1.h till funk.h
 
 */
 
