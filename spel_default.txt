@@ -16,9 +16,9 @@ V2102|2600|Meh, inte värt besväret. Käka <g<bark> istället.
 
 !BLÅBÄRSVALET - LETA RIVAL
 T2500|9995|Du får upp ett doftspår av den andra björnen.|Du hittar den i full färd med att äta (dina) blåbär!|Du ser bokstavligen rött! Vad gör du?
-V2501|4000|Vilken absurd fråga! Attackera rivalbjörnen!
+V2501|4000|Vilken absurd fråga! <r<Attackera rivalbjörnen>!
 V2502|4000|Attackera den andra björnen, så klart.
-V2503|4000|En blåbärstjuv kan inte få leva, till attack!
+V2503|4000|En blåbärstjuv kan <u<inte> få leva, till attack!
 V2504|4100|Njaaaa, den andra björnen ser stark ut. Lunsa därifrån...
 
 !BLÅBÄRSVALET - BARK
@@ -28,7 +28,7 @@ T2600|9997|Bark är ingen lämplig björnföda!|Du är brutalt dålig på att vara en b
 T4100|9998|Du lommar iväg med svansstumpen sorgset hängande.|Nåja, blåbär är inget vidare ändå...
 
 !GÅ I IDE - VINST
-T2200|9996|Du går i ide: <b<ZzzzzZzzzzz.>|Bra björn, du vann!
+T2200|9996|Du går i ide: ZzzzzZzzzzz.|Bra björn, du vann!
 
 !MYROR
 T2300|0000|Myror är inget vidare, smakar <y<surt>.|Men fungerar i krig.|Var vill du leta efter myror?
@@ -48,8 +48,8 @@ V2402|2100|Allt det här rytandet gör en björn hungrig, leta efter <c<blåbär!>
 
 !RYT IGEN
 T2410|0000|Du ryter igen, och tar i ändå från klospetsarna!||Men vad är detta?|En <g<Ärkestor Älg> kommer dundrande emot dig, tänk snabbt!
-V2411|2420|Visa vem som verkligen är skogens konung|Full fart framåt!
-V2412|2430|Ställ dig raklång upp på baktassarna.|Stirra björnilsket på älgen, och ryt!
+V2411|2420|Visa vem som verkligen är skogens konung|<r<Full fart framåt>!
+V2412|2430|Ställ dig raklång upp på baktassarna.|Stirra björnilsket på älgen, och <u<ryt>!
 V2413|2440|Fly!|De där hornen ser vassa ut!
 
 !BYGG KLART ÄLG
@@ -58,4 +58,4 @@ V2413|2440|Fly!|De där hornen ser vassa ut!
 T2440|9999|Du vänder helt om och dundrar iväg så fort tassarna bär.|Inte speciellt björnaktigt av dig, du förlorar!
 
 !ATTACKERA ANNAN BJÖRN - FÖRLUST
-T4000|9999|Den andra björnen har ätit massvis med blåbär och har blivit|brutalt blåbärsbjörnstark!||Du har inte en chans.|Du är en kass björn, du förlorar!
+T4000|9999|Den andra björnen har ätit massvis med blåbär och har blivit|<b<<u<brutalt> <b<blåbärsbjörnstark>!||Du har inte en chans.|Du är en kass björn, du förlorar!
