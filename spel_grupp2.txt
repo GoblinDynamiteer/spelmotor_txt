@@ -3,37 +3,37 @@ Dietmar och kaffezombierna! (av Daniel, Johan, Tak-Loon, Robert & Mazen)
 !Man bör vara minst 15 år för att spela detta äventyr, då det innehåller brutala våldsskildringar och te-drickning.
 !De namn/personer som förekommer i texten är fiktiva.
 
-T1000|0000|Du kommer tillbaka till skolan efter helgen.||Du är lite sen, och upptäcker att skolans kaffedrickare|beter sig mycket konstigt.|De har ett zombie-likt, odött beteende,|mer än vanligt för en måndagsmorgon!||Vad gör du?
+T1000|0000|Du kommer tillbaka till skolan efter helgen.||Du är lite sen, och upptäcker att skolans kaffedrickare|beter sig mycket konstigt.|De har ett <l<zombie-likt>, odött beteende,|mer än vanligt för en måndagsmorgon!||Vad gör du?
 V1001|1110|Dricker kaffe.
 V1002|1120|Dricker te.
 V1003|1130|Väljer att inte dricka någonting.
 
 !KAFFESPÅRET
-T1110|0000|Du provar kaffet, och börjar känna dig egendomligt odöd.|Du är nu också en zombie!|Du känner en stark lust att äta hjärnsubstans...|Du ser att en av dina kamrater kommer in genom ytterdörren||Vad gör du?
-V1111|1140|Du måste äta klasskompisens hjärna, såklart!
+T1110|0000|Du provar kaffet, och börjar känna dig egendomligt odöd.|Du är nu också en <l<zombie>!|Du känner en stark lust att äta <g<hjärnsubstans>...|Du ser att en av dina kamrater kommer in genom ytterdörren||Vad gör du?
+V1111|1140|Du <u<måste> äta klasskompisens hjärna, såklart!
 V1112|1150|Försök att motstå din instinkt att äta klasskompisens hjärna.
 
 !TE - FÖRLUST
-T1120|9998|Du väljer att ta te i stället för kaffe!?|Du dog!
+T1120|9998|Du väljer att ta <u<te> i stället för kaffe!?|Du <u<dog>!
 
 !KAFFESPÅRET VAL 1 - ÄT HJÄRNA
-T1140|0000|Innan du hinner börja hasa dig mot klasskamraten|så rusar Dietmar in med en yxa och går till attack!!|Vad gör du?
-V1141|1210|Attackera Dietmar!
-V1142|1220|Fly!
+T1140|0000|Innan du hinner börja hasa dig mot klasskamraten|så rusar Dietmar in med en <u<yxa> och går till attack!!|Vad gör du?
+V1141|1210|<r<Attackera Dietmar>!
+V1142|1220|<g<Fly>!
 
 !KAFFESPÅRET VAL 2 - HJÄRNBRIST - FÖRLUST
-T1150|9999|Du äter inte upp klasskompisens hjärna.|Du dog av "hjärnbrist"
+T1150|9999|Du äter inte upp klasskompisens hjärna.|Du dog av "<y<hjärnbrist>"
 
 !KAFFESPÅRET VAL 3 - DRICK INGET
-T1130|0000|Du dricker inget kaffe!|Du förblir en fullt frisk, levande människa!|Smart!|En klasskompis kommer genom dörren. Vill du varna honom om kaffet?
-V1131|1400|Nej! - |Använd din kompis som testperson för att se om din teori stämmer:|Att kaffet förvandlar folk till zombier..
+T1130|0000|Du dricker inget kaffe!|Du förblir en fullt frisk, levande <g<människa>!|Smart!|En klasskompis kommer genom dörren. Vill du <u<varna> honom om kaffet?
+V1131|1400|<u<Nej>! |Använd din kompis som <y<testperson> för att se om din teori stämmer:|Att kaffet förvandlar folk till <l<zombier>..
 V1132|1410|Varna klasskamraten!
 
 !KAFFESPÅRET KOMPIS DÖRR VAL 1- ELAK! - FÖRLUST
-T1400|9998|Din kompis tar en stor klunk kolsvart kaffe,|förvandlas omedelbart till en zombie och äter din hjärna.|Vad trodde du skulle hända?|Du dog
+T1400|9998|Din kompis tar en stor klunk kolsvart kaffe,|förvandlas omedelbart till en <l<zombie> och äter din hjärna.|Vad trodde du skulle hända?|Du dog!
 
 !KAFFESPÅRET KOMPIS DÖRR VAL 2- VARNA! - FÖRLUST
-T1410|0000|Du förklarar för din (något skeptiska) kamrat att kaffet|eventuellt förvandlar folk till zombier!|Ni hinner inte diskutera länge förrän ni ser Dietmar komma|springandes mot er med en stor yxa höjd över sitt huvud.||Han utbrister: HAR NI DRUCKIT AV KAFFET?!
+T1410|0000|Du förklarar för din (något skeptiska) kamrat om att kaffet|eventuellt förvandlar folk till <l<zombier>!|Ni hinner inte diskutera länge förrän ni ser Dietmar komma|springandes mot er med en <u<stor yxa> höjd över sitt huvud.||Han utbrister: <u<<r<HAR NI DRUCKIT AV KAFFET>?!
 V1411|1420|Utbrist förskräckt att ni inte alls har druckit kaffe!
 V1412|1430|Stå stilla och var tyst av skräck!
 
@@ -44,15 +44,15 @@ T1420|9999|Dietmar förklarar högtljutt att det pågår en zombieinvasion:|kaffet ä
 T1430|9999|Dietmar tar för givet att ni har druckit av kaffet och nu är|odöda monster som vill äta hjärnor.||Han klyver er båda på mitten med yxan!|Du (och din kompis) dog!
 
 !DIETMARATTACK VAL 1 - ATTACK - FÖRLUST
-T1210|9999|Du attackerar Dietmar, och har förstås inte en chans!|Dietmar klyver dig på mitten med ett enda, kraftfullt hugg.|Du dog (typ igen, för zombier är ju redan döda).
+T1210|9999|Du försöker attackera Dietmar, och har förstås <u<inte> en chans!|Dietmar <u<<r<klyver> dig på mitten med ett enda, kraftfullt hugg!|Du dog! (typ igen, för zombier är ju redan döda).
 
 !DIETMARATTACK VAL 2 - FLY
-T1220|0000|Du börjar hasa dig bort från Dietmar, och råkar välta kaffemaskinen.|Maskinen stoppar Dietmar temporärt, och du kommer in i lunchrummet.|Det är stort tumult i klassrummet, zombies och människor i storbråk!|Vad gör du?
-V1221|1310|Delta!
-V1222|1320|Hasa dig ut på bakgården.
+T1220|0000|Du börjar hasa dig bort från Dietmar, och råkar välta kaffemaskinen.|Maskinen stoppar Dietmar temporärt. Du kommer in i lunchrummet.|Det är <u<stort tumult> i klassrummet, <l<zombies> och <g<människor> i <u<storbråk>!|Vad gör du?
+V1221|1310|<r<Delta>!
+V1222|1320|<g<Hasa> dig ut på bakgården.
 
 !KLASSRUMFIGHT - DELTA - FÖRLUST
-T1310|9999|Dietmar kommer in i rummet med yxan i högsta hugg|Han skriker något på österrikiska och slaktar sedan vilt alla zombies.|Du dog (först)
+T1310|9999|Dietmar kommer in i rummet med yxan i högsta hugg|Han <u<skriker> något på österrikiska och <r<slaktar> sedan vilt alla <l<zombies>.|Du dog (först)
 
 !KLASSRUMFIGHT - AUTOLIV - FÖRLUST
-T1320|9999|Du blir brutalt överkörd av en testbil från Autoliv|Inga vidare värst bra säkerhetssystem i den bilen...|Du dog
+T1320|9999|Du lyckas släpa dig ut på bakgården, <g<vilken prestation>!|Men vad är det för <u<ljud>?!|Du blir <u<brutalt överkörd> av en testbil från <b<Autoliv>|Inga vidare värst bra säkerhetssystem i den bilen...|Du dog
