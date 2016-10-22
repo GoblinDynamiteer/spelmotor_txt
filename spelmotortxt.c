@@ -1,38 +1,13 @@
 #include <windows.h>
-#include "funk.h" //Eget funktionsbibliotek innehållande diverse text- och textfil-funktioner
+
+ //Innehåller deklarationer av funktioner i libxt.c, och macron för textformattering
+#include "libtxt.h"
 
 #define N 1000	//Längd för char-variabler, och parameter till vissa funktioner
 #define TEXTFIL "spel_default.txt" //Standardtextfil med "Björnspelet"
-#define L "\n-----------------------------------------------------------------\n" //För utskrift av linjer med printf
+
 #define TEXTHASTIGHET 15		//Antal millisekunder att pausera mellan varje teckenutskrift i funktionen skrivUtText
 #define LT 11	//Antal tecken på rad i textfilen, innan text som ska visas, ex: "V1001|2100|Text som ska visas"
-
-/*Definitioner för textformatering, skriv ut i printf-satser
-
-ANSI-escape-koder: Används för t.ex formatering av text
-ESC + [ + kod används för att mata in ANSI-escape-koder
-\033 (oktalt) är escape-koden för tecknet Escape, det går också att använda \x1b för det hexadecimala värdet
-
-ANSI-escape + n m 
-där n är 31 - 37: Sätter olika färger på texten
-där n är 91 - 97: Sätter olika färger på texten, högintensivt
-där n är 40 - 47: Sätter olika färger på textens bakgrund
-där n är 0: Återställer
-m används för att indikera slut på formateringskoder
-
-Exempel: \033[91;43m TEXT ger intensiv röd teckenfärg med gul bakgrund
-
-Källa:
-https://en.wikipedia.org/wiki/Escape_character 
-https://en.wikipedia.org/wiki/ANSI_escape_code*/
-
-#define FRO "\033[91m" 	//Röd textformatering (31 är mörk)
-#define FGR "\033[32m" 	//Grön textformatering
-#define FGU "\033[33m" 	//Gul textformatering
-#define FBL "\033[94m" 	//Blå textformatering (34 är väldigt mörk)
-#define FCY "\033[36m" 	//Cyan (Ungefär ljusblå) textformatering
-#define TSU "\033[4m" 		//Understruken textformatering
-#define FR "\033[0m" 		//Återställer textformatering
 
 /*
 SPELMOTOR TXT
@@ -90,6 +65,13 @@ Lagt till stöd för enskild teckenfärg och formatering
 Namnbyte av fil strings_text_v1.c till funk.c
 Namnbyte av fil strings_text_v1.h till funk.h
 
+2016-10-22
+Namnbyte av funk.c till libtxt.c
+Namnbyte av funk.h till libtxt.h
+Flyttade macron för textformattering till libtxt.h
+Flyttade macro för "linje" till libtxt.h
+Ny namngivning av macron i libtxt.h
+Ändring av macro-anrop i koden
 */
 
 //Deklaration av funktioner som finns i denna fil:
@@ -114,9 +96,9 @@ int main(int argc, char *argv[]){
 	/*skrivUtText(s,n,l,t) --> Skriver ut n antal tecken av strängen s. 
 	Om l == 1 skrivs "linjer" ut innan och efter texten (macro L). 
 	om t == 1 skrivs tabbslag ut i början av texten och efter returslag */
-	printf(FBL); //Blå teckenfärg
+	printf(FORM_BLACK FORM_WHITE_BG); //Intensiv vit färg
 	skrivUtText("SPELMOTOR TXT", 13, 1, 0); //Programmets namn
-	printf(FR); //Slut teckenformatering
+	printf(FORM_END); //Slut teckenformatering
 	if(textfil == NULL){ 
 		/* Programmet har inte fått en textfil som argument, 
 		eller har inte kunnat hitta/läsa textfilen i argumentet. 
@@ -152,7 +134,7 @@ int main(int argc, char *argv[]){
 		idNum = 1000;
 		//TTS finns i strings_text_v1.c, och beskrivs där. Textfilens första rad, som ska vara spelets titel, läses till variabeln s.
 		TTS(s, N, textfil);
-		printf(L "Spel som kommer köras är: "FCY"%s"FR L, s);
+		printf(ADD_LINE "Spel som kommer köras är: " FORM_WHITE "%s" FORM_END ADD_LINE, s);
 		//Programmet pauserar tills användaren trycker på en valfri tangent, sedan blankas skärmen.
 		system("pause");
 		system("cls"); //Clearscreen
@@ -212,7 +194,7 @@ int listaVal(int a, FILE *f){
 		if(s[0] == 'V' && checkVal == a+valRaknare){
 			/* Skriver ut val-siffra för inmatning från användare, efter skrivs valets text och nyradstecken
 			valRaknare ökar med 1 för att kontrollera om det finns fler val. */
-			printf(FGR"[%d]"FR"  - ", valRaknare); //Valnumren skrivs ut med grön text
+			printf(FORM_GREEN "[%d]" FORM_END "  - ", valRaknare); //Valnumren skrivs ut med grön text
 			skrivUtText(s+LT, strlen(s)-LT, 0, 1);
 			printf("\n");
 			valRaknare++;
@@ -224,10 +206,11 @@ int listaVal(int a, FILE *f){
 	//Do-sats som upprepas om användaren inte matar in ett korrekt val.
 	do{
 		if(korrektVal){ //Triggar alltid första gången
-			printf(L "Ange val genom at slå in en siffra: ");
+			printf(ADD_LINE "Ange val genom at slå in en siffra: ");
 		}
 		else {
-			printf(L FRO "Fel val!" FR "\nAnge val genom at slå in en siffra: ");//Fel val! skrivs i rött
+			//Fel val! skrivs i rött
+			printf(ADD_LINE FORM_RED "Fel val!" FORM_END "\nAnge val genom at slå in en siffra: ");
 		}
 		//Läser in text från användaren med radInput
 		radInput(valInput, 2);
@@ -272,7 +255,7 @@ med antal tecken som ska skrivas ut.
 _Bool-variabeln linjer bestämmer om funktionen ska skriva ut ”rader” i  början och slutet av textblocken. */
 void skrivUtText(char *string, int n, _Bool linjer, _Bool tabb){
 	if(linjer){ //Skriver ut en linje om funktionen har anropats med linjer=1
-		printf(L);
+		printf(ADD_LINE);
 	}
 	if (tabb){ //Skriver ut ett tabbtecken om funktionen har anropats med tabb=1
 		printf("\t");
@@ -292,34 +275,34 @@ void skrivUtText(char *string, int n, _Bool linjer, _Bool tabb){
 		else if (string[i] == '<'){
 			switch(string[++i]){ //i ökar med 1 innan det används innan string används i switch-satsen
 				case 'r': //Röd text
-					printf(FRO);
+					printf(FORM_RED);
 					i++; //i ökar med 1 i samtliga cases, för att hoppa över nästa "<"
 					break;
 				case 'u': //Understruken text
-					printf(TSU);
+					printf(FORM_UNDER);
 					i++;
 					break;
 				case 'c': //Cyan text
-					printf(FCY);
+					printf(FORM_CYAN);
 					i++;
 					break;
 				case 'g': //Grön text
-					printf(FGR);
+					printf(FORM_GREEN);
 					i++;
 					break;
 				case 'y': //Gul text
-					printf(FGU);
+					printf(FORM_YELLOW);
 					i++;
 					break;
-				case 'b': //Gul text
-					printf(FBL);
+				case 'b': //Blå text
+					printf(FORM_BLUE);
 					i++;
 					break;
 			}
 		}
 		//Om '>' hittas textsträngen i textsträngen innebär det att speciell formatering av text ska avslutas
 		else if (string[i] == '>'){
-			printf(FR); //FR är macrot för '\033[0m' som återställer textformatering
+			printf(FORM_END); //FORM_END är macrot för '\033[0m' som återställer textformatering
 		}
 		else{//triggar om tecknet är ett vanligt tecken att skriva ut
 			//putchar skriver ut ett tecken
@@ -329,7 +312,7 @@ void skrivUtText(char *string, int n, _Bool linjer, _Bool tabb){
 		Sleep(TEXTHASTIGHET);
 	}
 	if(linjer){ 
-		printf(L);
+		printf(ADD_LINE);
 	}
 }
 

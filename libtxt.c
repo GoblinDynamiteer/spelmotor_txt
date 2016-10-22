@@ -1,7 +1,7 @@
-#include "funk.h"
+#include "libtxt.h"
 
 /*
-VERSION 1
+VERSION 3
 
 Ändringar:
 ---------------------------------------------------------
@@ -11,6 +11,12 @@ Första utgåvan
 2016-10-13
 Uppdaterat kommentarer, inga ändringar i koden
 ---------------------------------------------------------
+2016-10-22
+Lade till definitioner för textformatering i header
+Namnbyte av filer till libtxt.*
+Namnbyte av macron
+Lade till fler färger för textformatering
+
 
 Information:
 Filen innehåller funktioner för inläsning av text, 
