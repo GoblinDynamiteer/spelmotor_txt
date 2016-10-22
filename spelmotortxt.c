@@ -96,7 +96,7 @@ int main(int argc, char *argv[]){
 	/*skrivUtText(s,n,l,t) --> Skriver ut n antal tecken av strängen s. 
 	Om l == 1 skrivs "linjer" ut innan och efter texten (macro L). 
 	om t == 1 skrivs tabbslag ut i början av texten och efter returslag */
-	printf(FORM_BLACK FORM_WHITE_BG); //Intensiv vit färg
+	printf(FORM_INTENSIVE); //Intensiv vit färg
 	skrivUtText("SPELMOTOR TXT", 13, 1, 0); //Programmets namn
 	printf(FORM_END); //Slut teckenformatering
 	if(textfil == NULL){ 
@@ -134,7 +134,7 @@ int main(int argc, char *argv[]){
 		idNum = 1000;
 		//TTS finns i strings_text_v1.c, och beskrivs där. Textfilens första rad, som ska vara spelets titel, läses till variabeln s.
 		TTS(s, N, textfil);
-		printf(ADD_LINE "Spel som kommer köras är: " FORM_WHITE "%s" FORM_END ADD_LINE, s);
+		printf(ADD_LINE "Spel som kommer köras är:\n" FORM_WHITE "%s" FORM_END ADD_LINE, s);
 		//Programmet pauserar tills användaren trycker på en valfri tangent, sedan blankas skärmen.
 		system("pause");
 		system("cls"); //Clearscreen
@@ -296,6 +296,10 @@ void skrivUtText(char *string, int n, _Bool linjer, _Bool tabb){
 					break;
 				case 'b': //Blå text
 					printf(FORM_BLUE);
+					i++;
+					break;
+				case 'l': //Lila text
+					printf(FORM_MAGENTA);
 					i++;
 					break;
 			}
