@@ -1,7 +1,7 @@
 #include "libtxt.h"
 
 /*
-VERSION 3
+VERSION 4
 
 Ändringar:
 ---------------------------------------------------------
@@ -16,13 +16,18 @@ Lade till definitioner för textformatering i header
 Namnbyte av filer till libtxt.*
 Namnbyte av macron
 Lade till fler färger för textformatering
+---------------------------------------------------------
+2016-10-23
+Ny funktion: printLine(t,n)
+	skriver ut n st tecken av char t
 
+	
 
 Information:
-Filen innehåller funktioner för inläsning av text, 
-samt kopiering från textfil till char-variabel.
+Filen innehåller funktioner för inläsning av text, textfilshantering, samt
+diverse andra text-funktioner
 
-Funktionerna är lika eller identiska till de stödfunktioner som finns
+Fler av funktionerna är lika eller identiska till de stödfunktioner som finns
 i boken 'C från början' av Jan Skansholm.
 
 Anledningen till att ej använda författarens bibliotek som finns
@@ -120,6 +125,7 @@ _Bool textfilTillString(char *a, int n, FILE *f){
 	}
 	return 1;
 }
+
 /*
 TTS
 Anropar textfilTillString och ger dess returvärde som returvärde
@@ -131,3 +137,17 @@ _Bool TTS(char *a, int n, FILE *f){
 	return textfilTillString(a, n, f);
 }
 
+/*
+printLine
+Skriver ut tecknet 't', n st antal gånger.
+
+Exempel: 
+printLine('-', 15);
+-->
+---------------
+*/
+void printLine(char t, int n){
+	while(n--){
+		putchar(t);
+	}
+}

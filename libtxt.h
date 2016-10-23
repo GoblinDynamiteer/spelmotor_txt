@@ -68,3 +68,4 @@ void clearBufferFil(FILE *f);
 _Bool radInput(char[], int);
 _Bool textfilTillString(char[], int, FILE *f);
 _Bool TTS(char *a, int n, FILE *f);
+void printLine(char t, int n);
