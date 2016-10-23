@@ -72,6 +72,10 @@ Flyttade macron för textformattering till libtxt.h
 Flyttade macro för "linje" till libtxt.h
 Ny namngivning av macron i libtxt.h
 Ändring av macro-anrop i koden
+
+2016-10-22
+Ändrade felaktig text i kommentarer
+
 */
 
 //Deklaration av funktioner som finns i denna fil:
@@ -94,7 +98,7 @@ int main(int argc, char *argv[]){
 	system("chcp 1252");
 	system("cls"); //Behövs också för att ANSI-escape-koder ska fungera
 	/*skrivUtText(s,n,l,t) --> Skriver ut n antal tecken av strängen s. 
-	Om l == 1 skrivs "linjer" ut innan och efter texten (macro L). 
+	Om l == 1 skrivs "linjer" ut innan och efter texten (macro ADD_LINE i libtxt.h). 
 	om t == 1 skrivs tabbslag ut i början av texten och efter returslag */
 	printf(FORM_INTENSIVE); //Intensiv vit färg
 	skrivUtText("SPELMOTOR TXT", 13, 1, 0); //Programmets namn
@@ -105,7 +109,7 @@ int main(int argc, char *argv[]){
 		Användaren uppmanas att skriva in ett namn för textfil att spela med. */
 		printf("Ange filnamn (med filändelse) för textfil.\nMata in EOF (Ctrl+Z) för att avbryta.\n"
 			"Om ingen fil anges laddas %s\n\nTextfil: ",TEXTFIL);
-		//radInput finns i strings_text_v1.c, och beskrivs där.
+		//radInput finns i libtxt.c, och beskrivs där.
 		if(radInput(filnamn, N)){
 			textfil = fopen(filnamn, "r");
 		}
@@ -132,7 +136,7 @@ int main(int argc, char *argv[]){
 	while(tolower(restart) == 'j'){
 		/* idNum sätts till 1000 för att skriva ut spelets första val, som ska vara just 1000 */
 		idNum = 1000;
-		//TTS finns i strings_text_v1.c, och beskrivs där. Textfilens första rad, som ska vara spelets titel, läses till variabeln s.
+		//TTS finns i libtxt.c, och beskrivs där. Textfilens första rad, som ska vara spelets titel, läses till variabeln s.
 		TTS(s, N, textfil);
 		printf(ADD_LINE "Spel som kommer köras är:\n" FORM_WHITE "%s" FORM_END ADD_LINE, s);
 		//Programmet pauserar tills användaren trycker på en valfri tangent, sedan blankas skärmen.
