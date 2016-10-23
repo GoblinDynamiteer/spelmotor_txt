@@ -17,4 +17,4 @@ Currently, the code will only compile on a Windows-platform.
 
 ![Shot 1](https://raw.githubusercontent.com/GoblinDynamiteer/spelmotor_txt/master/img/shot001.png)
 
-![Shot 2](https://raw.githubusercontent.com/GoblinDynamiteer/spelmotor_txt/master/img/shot002.png)
+![Shot 2](https://raw.githubusercontent.com/GoblinDynamiteer/spelmotor_txt/master/img/shot003.png)
