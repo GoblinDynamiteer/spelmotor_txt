@@ -1,4 +1,6 @@
-SPELMOTOR TXT
+#SPELMOTOR TXT
+
+---
 
 *This is a project for a course in C Programming, that I'm currently undertaking.* 
 
@@ -9,6 +11,10 @@ A future project might/will be to build a program which the user can run to easi
 
 Currently, the code will only compile on a Windows-platform.
 
-**Screenshots: **
+---
+
+**Screenshots:**
 
 ![Shot 1](https://raw.githubusercontent.com/GoblinDynamiteer/spelmotor_txt/master/img/shot001.png)
+
+![Shot 2](https://raw.githubusercontent.com/GoblinDynamiteer/spelmotor_txt/master/img/shot002.png)
