@@ -2,9 +2,39 @@ Piratkapten! (av Johan Kämpe)
 !Speläventyr för SPELMOTOR TXT
 !De namn/personer som förekommer i texten är fiktiva.
 
-T1000|0000|Arrrghhh!||Du är en <r<råbarkad kapten> på ett piratfartyg, någon gång på 1700-talet.|Vad vill du göra?
-V1001|1110|Olja in ditt träben.
-V1002|1120|Drick rom!.
-V1003|1130|Träna prickskytte med din nystulna flintlåspistol!.
+T1000|0000|Arrrghhh!||Du är en <r<råbarkad kapten> på ett piratfartyg, någon gång på 1700-talet.|Havet är lugnt och ni har för närvarande inget pirateri att utföra...|Hur tänker du fördriva tiden?
+V1001|1220|Olja in ditt träben.
+V1002|1112|Drick <y<rom>!
+V1003|1113|Träna prickskytte med din nystulna flintlåspistol!
+V1004|1114|Inspektera skeppet!|Mannarna brukar slöa till om du inte visar dig på ett tag
+V1005|1115|Inget pirateri?!- <u<Nonsens>!|Skicka upp en av dina mannar till utkikskorgen för att spana efter byte!
 
+!ROM 1
+T1112|0000|Aaaaaah!|Inget biter så bra mot tristessen (och eventuellt skörbjuggen)|som en rejäl klunk rom!|Det här är <u<starka grejer> -- ni kom över ett stort parti under|en plundring av ett brittiskt fraktskepp på väg från en jamaikansk utpost.||Du har mycket kvar i flaskan du håller i,|och du har flera flaskor ytterligare i din kaptenshytt!
+V1113|1121|Drick mer!
+V1114|1121|Drick mer!
+V1115|1121|Drick mer!
 
+!ROM2
+T1121|0000|Du tar en <u<stor> klunk ur flaskan!|Du känner hur ditt <c<mod> och <r<piratbegär> stiger medans den|melassliknande sörjan rinner brännande skönt ner i din strupe.
+V1122|1131|Drick mer!
+V1123|1131|Drick mer!
+V1124|1136|Svep flaskan!
+
+!ROM3 - DRICK MER
+T1131|0000|Nu börjar det hända saker, du känner dig <u<ordentligt> kaptenaktig och modig nu.|Är det inte dags att åter igen visa mannarna varför just <u<du> är kapten?|<r<Myteri> är ju aldrig långt borta!
+V1132|1141|<u<Imponera> på mannarna med en uppvisning i <g<prickskytte>|med din nystulna flintlåspistol!
+V1133|1142|Utamana Hank <r<"Bearded Beast"> Veal, den största av|dina mannar på en spontan <y<knytnävsdans>!
+
+!ROM3 - SVEP FLASKA -- FÄRG RÖTT!
+T1136|9995|Du slår av flaskhalsen med din kroksabel, och klunkar snabbt i dig den resterande romen.
+!OBS FORTSÄTT
+
+!OLJA TRÄBEN 1 -- VAL 2 TILL ROM T1112
+T1220|0000|Du ryter åt fartygets skeppspojke att hämta din träbensolja!|Eftersom du är kapten, så utförs kommandot illa kvickt!|Med trasa i hand börjar du olja in ditt ståtliga ben, gjort av finaste Mahogny!
+V1221|1230|Fortsätt olja in benet, det ska glänsa!
+V1222|1112|Inget vidare underhållande arbete detta...|Öka arbetslusten med en klunk från <y<romflaskan>!
+
+!OLJA TRÄBEN 2
+T1230|0000|Du fortsätter gnida med trasan på ditt träben!|Den karibiska solen reflekteras vackert i glansen!|Det fullkomligt strålar om dig!|Du är väldigt nöjd med dig själv, fast nu väldigt uttråkad.
+V1231|1112|Du är mycket nöjd med dig själv, fast nu väldigt uttråkad
