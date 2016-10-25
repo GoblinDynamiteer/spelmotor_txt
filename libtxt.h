@@ -69,3 +69,5 @@ _Bool radInput(char[], int);
 _Bool textfilTillString(char[], int, FILE *f);
 _Bool TTS(char *a, int n, FILE *f);
 void printLine(char t, int n);
+int inputInt(const char a[]);
+double inputDouble(const char a[]);

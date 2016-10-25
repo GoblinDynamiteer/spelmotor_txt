@@ -1,7 +1,7 @@
 #include "libtxt.h"
 
 /*
-VERSION 4
+VERSION 5
 
 Ändringar:
 ---------------------------------------------------------
@@ -20,8 +20,14 @@ Lade till fler färger för textformatering
 2016-10-23
 Ny funktion: printLine(t,n)
 	skriver ut n st tecken av char t
+---------------------------------------------------------
+2016-10-25
+Ny funktion: inputInt(a)
+	Skriver ut text a, läser in int som returneras
+Ny funktion: inputDouble(a)
+	Skriver ut text a, läser in double som returneras
+---------------------------------------------------------
 
-	
 
 Information:
 Filen innehåller funktioner för inläsning av text, textfilshantering, samt
@@ -150,4 +156,30 @@ void printLine(char t, int n){
 	while(n--){
 		putchar(t);
 	}
+}
+
+/* inputInt
+Skriver ut texten i char-variabel a, och tar en användarinläsning till int-variabel som returneras
+
+Exempel användning:
+int variabel = inputInt("Skriv in ett heltal: ");
+ */
+int inputInt(const char a[]){
+	int temp;
+	printf("%s", a);
+	scanf("%d", &temp);
+	return temp;
+}
+
+/* inputDouble
+Skriver ut texten i char-variabel a, och tar en användarinläsning till double-variabel som returneras
+
+Exempel användning:
+double variabel = inputDouble("Skriv in ett decimaltal: ");
+ */
+double inputDouble(const char a[]){
+	double temp;
+	printf("%s", a);
+	scanf("%lf", &temp);
+	return temp;
 }
