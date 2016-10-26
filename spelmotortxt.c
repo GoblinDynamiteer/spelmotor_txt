@@ -73,7 +73,7 @@ Flyttade macro för "linje" till libtxt.h
 Ny namngivning av macron i libtxt.h
 Ändring av macro-anrop i koden
 
-2016-10-22
+2016-10-23
 Ändrade felaktig text i kommentarer
 
 */
