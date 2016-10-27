@@ -27,7 +27,10 @@ Ny funktion: inputInt(a)
 Ny funktion: inputDouble(a)
 	Skriver ut text a, läser in double som returneras
 ---------------------------------------------------------
-
+2016-10-27
+Uppdaterad funktion: printLine(t,n,r)
+	skriver ut n st tecken av char t
+	om bool r == 1, skriv nyradstecken före och efter linje
 
 Information:
 Filen innehåller funktioner för inläsning av text, textfilshantering, samt
@@ -152,10 +155,17 @@ printLine('-', 15);
 -->
 ---------------
 */
-void printLine(char t, int n){
+void printLine(char t, int n, _Bool r){
+	if(r){
+		printf("\n");
+	}
 	while(n--){
 		putchar(t);
 	}
+	if(r){
+		printf("\n");
+	}
+	return;
 }
 
 /* inputInt

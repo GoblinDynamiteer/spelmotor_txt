@@ -2,6 +2,7 @@
 
  //Innehåller deklarationer av funktioner i libxt.c, och macron för textformattering
 #include "libtxt.h"
+#include "struct.h"
 
 #define N 1000	//Längd för char-variabler, och parameter till vissa funktioner
 #define TEXTFIL "spel_default.txt" //Standardtextfil med "Björnspelet"
@@ -15,6 +16,9 @@ Program för att köra speläventyr från textfiler.
 Av Johan Kämpe
 
 Kommentarer visas över eller till höger om det det beskriver i koden.
+
+
+--- BRANCH WITH DUAL LANGUAGE SUPPORT (ENGLISH / SWEDISH)
 
 
 Ändringslogg:
@@ -78,6 +82,7 @@ Ny namngivning av macron i libtxt.h
 
 2016-10-27
 Ytterligare kommentering av källkoden
+Lade till support för språkval av programmets text
 
 */
 
@@ -85,12 +90,24 @@ Ytterligare kommentering av källkoden
 int listaVal(int a, FILE *f);
 void skrivUtText(char *string, int n, _Bool linjer, _Bool tabb);
 _Bool textSwitchar(int s);
-
+void printLang(int lang, int id);
+struct textString string[M];
 //Debug-läge. Sätt till 1 för att få extra information utskriven från programmet
 _Bool debugMode = 0;
 
 //Argumentet argv för mainfunktionen ges från kommandopromten med "spelmotortxt.exe PARAMETER"
 int main(int argc, char *argv[]){
+	//val av språk
+	short int langset = 1; //1 engelska 0 svenska
+	printLine('-', 25, 1);
+	printf(" Language / Språkval\n");
+	printf(" 0: Svenska\n");
+	printf(" 1: English\n");
+	printLine('-', 25, 1);
+	printf(" Enter: ");
+	scanf("%d", &langset);
+	clearBuffer();
+	printLang(langset, -1);
 	/* Öppnar värdet i argv[1] som textfil till variabel textfil 
 	argv[0] är programmets namn */
 	FILE * textfil = fopen(argv[1], "r"); //r = read
@@ -104,14 +121,17 @@ int main(int argc, char *argv[]){
 	Om l == 1 skrivs "linjer" ut innan och efter texten (macro ADD_LINE i libtxt.h). 
 	om t == 1 skrivs tabbslag ut i början av texten och efter returslag */
 	printf(FORM_INTENSIVE); //Intensiv vit färg
-	skrivUtText("SPELMOTOR TXT", 13, 1, 0); //Programmets namn
+	printLine('*', 50, 1);
+	printLang(langset, 0);
+	printLine('*', 50, 1);
 	printf(FORM_END); //Slut teckenformatering
 	if(textfil == NULL){ 
 		/* Programmet har inte fått en textfil som argument, 
 		eller har inte kunnat hitta/läsa textfilen i argumentet. 
 		Användaren uppmanas att skriva in ett namn för textfil att spela med. */
-		printf("Ange filnamn (med filändelse) för textfil.\nMata in EOF (Ctrl+Z) för att avbryta.\n"
-			"Om ingen fil anges laddas %s\n\nTextfil: ",TEXTFIL);
+		printLang(langset, 1);
+		printf("%s",TEXTFIL);
+		printLang(langset, 2);
 		//radInput finns i libtxt.c, och beskrivs där.
 		if(radInput(filnamn, N)){
 			textfil = fopen(filnamn, "r");
@@ -141,7 +161,11 @@ int main(int argc, char *argv[]){
 		idNum = 1000;
 		//TTS finns i libtxt.c, och beskrivs där. Textfilens första rad, som ska vara spelets titel, läses till variabeln s.
 		TTS(s, N, textfil);
-		printf(ADD_LINE "Spel som kommer köras är:\n" FORM_WHITE "%s" FORM_END ADD_LINE, s);
+		printLine('-', 50, 1);
+		//printf(ADD_LINE "Spel som kommer köras är:\n" FORM_WHITE "%s" FORM_END ADD_LINE, s);
+		printLang(langset, 3);
+		printf(FORM_WHITE "%s" FORM_END, s);
+		printLine('-', 50, 1);
 		//Programmet pauserar tills användaren trycker på en valfri tangent, sedan blankas skärmen.
 		system("pause");
 		system("cls"); //Clearscreen
@@ -180,6 +204,29 @@ int main(int argc, char *argv[]){
 	return 0; //Programmet avslutas.
 } //Slut main-funktion.
 
+
+void printLang(int lang, int id){
+	if(id == -1){
+		//Laddar in språkfil till struct
+		FILE *language_file = fopen("lang.dat", "rb");
+		fseek(language_file, 0, SEEK_END);
+		int n = ftell(language_file) / structSize;
+		rewind(language_file);
+		//static struct textString string[2];
+		fread(&string, structSize, n, language_file);
+		fclose(language_file);
+		return;
+	}
+	if(lang == 1){
+		int n = strlen(string[id].string_en);
+		skrivUtText(string[id].string_en, n, 0, 0); //Programmets namn
+		return;
+	}
+	else{
+		int n = strlen(string[id].string_sv);
+		skrivUtText(string[id].string_sv, n, 0, 0); //Programmets namn
+	}
+}
 
 /* Funktionen listaVal skriver ut de val som finns för det aktuella scenariot i spelet. 
 Som argument får funktionen textens identifikationsnummer som en int-variabel, 
