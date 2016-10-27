@@ -1,5 +1,6 @@
 Dietmar och kaffezombierna! (av Daniel, Johan, Tak-Loon, Robert & Mazen)
 !Uppdaterad text, och portad till SPELMOTOR TXT-textfilsformat
+!https://github.com/GoblinDynamiteer/spelmotor_txt
 !Man bör vara minst 15 år för att spela detta äventyr, då det innehåller brutala våldsskildringar och te-drickning.
 !De namn/personer som förekommer i texten är fiktiva.
 
