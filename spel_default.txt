@@ -1,6 +1,7 @@
 Björnspelet (Default-äventyr)
 !Av Johan Kämpe, för användning i programmet SPELMOTOR TXT
 !https://github.com/GoblinDynamiteer/spelmotor_txt
+!Man bör vara minst 15 år för att spela detta äventyr, då det innehåller brutala våldsskildringar och brusten kärlek
 
 !INITIAL TEXT
 T1000|0000|Du är en stor <u<<r<brunbjörn> i en djup mörk skog, vad gör du?
@@ -12,7 +13,7 @@ V1004|2400|<u<Ryt>!
 !BLÅBÄRSVALET
 T2100|0000|Du hittar inga blåbär, <r<vafalls?!>|Har någon annan björn ätit dem?|Vad gör du?
 V2101|2500|Leta upp <c<blåbärtjuv-björnen!>
-V2102|2600|Meh, inte värt besväret. Käka <g<bark> istället.
+V2102|2600|Meh, <u<inte> värt besväret. Käka <g<bark> istället.
 
 !BLÅBÄRSVALET - LETA RIVAL
 T2500|9995|Du får upp ett doftspår av den andra björnen.|Du hittar den i full färd med att äta (dina) blåbär!|Du ser bokstavligen rött! Vad gör du?
@@ -22,10 +23,10 @@ V2503|4000|En blåbärstjuv kan <u<inte> få leva, till attack!
 V2504|4100|Njaaaa, den andra björnen ser stark ut. Lunsa därifrån...
 
 !BLÅBÄRSVALET - BARK
-T2600|9997|Bark är ingen lämplig björnföda!|Du är brutalt dålig på att vara en björn, du förlorar!
+T2600|9997|<g<Bark> är ingen lämplig björnföda!|Du är <u<brutalt> dålig på att vara en björn, du förlorar!
 
 !RIVAL - GÅ BORT - SPEL KLART
-T4100|9998|Du lommar iväg med svansstumpen sorgset hängande.|Nåja, blåbär är inget vidare ändå...
+T4100|9998|Du lommar iväg med svansstumpen sorgset hängande.|Nåja, blåbär är inget vidare ändå... ||Du är en rätt <b<medioker> björn!
 
 !GÅ I IDE - VINST
 T2200|9996|Du går i ide: ZzzzzZzzzzz.|Bra björn, du vann!
@@ -44,15 +45,25 @@ T3100|9999|<c<WOW!> Du har aldrig sett så många myror förut!|Du äter dig mätt oc
 !RYT
 T2400|0000|Du ryter mäktigt!|Skogens smådjur <r<skakar av skräck!>|Du är <u<mycket nöjd> med dig själv.
 V2401|2410|Ryt en gång till, fast högre!
-V2402|2100|Allt det här rytandet gör en björn hungrig, leta efter <c<blåbär!>
+V2402|2100|Allt det här rytandet gör en björn <u<hungrig>, leta efter <c<blåbär!>
 
 !RYT IGEN
-T2410|0000|Du ryter igen, och tar i ändå från klospetsarna!||Men vad är detta?|En <g<Ärkestor Älg> kommer dundrande emot dig, tänk snabbt!
+T2410|0000|Du ryter igen, och tar i ändå från <u<klospetsarna>!||Men vad är detta?|En <g<Ärkestor Älg> kommer dundrande emot dig, tänk snabbt!
 V2411|2420|Visa vem som verkligen är skogens konung|<r<Full fart framåt>!
-V2412|2430|Ställ dig raklång upp på baktassarna.|Stirra björnilsket på älgen, och <u<ryt>!
+V2412|2430|Ställ dig raklång upp på baktassarna.|Stirra <u<björnilsket> på älgen, och <u<ryt>!
 V2413|2440|Fly!|De där hornen ser vassa ut!
 
-!BYGG KLART ÄLG
+!ÄLG STIRRA ILSKET
+T2430|9999|Älgen <y<tvärnitar!> (precis som en älg gör när den tvärnitar).|Ni börjar en utdragen stirrningmatch!|Tiden stannar och luften känns <c<elektrisk>!||Efter en björnlång tid ger sig till sist den <g<Ärkestora Älgen>,|han frustar till och lunsar därifrån med sänkta horn.||Där visade du vem som bestämmer i den här skogen! <u<<b<DU>!||Grattis, du är en kanonbjörn, du vann!
+
+!ÄLG ATTACK -> ALFAHONA
+T2420|0000|Du tar sats och dundrar iväg mot den <g<Ärkestora Älgen>, <r<modigt>!||Sekunden innan ni brakar samman rasar en <u<ENORM> best ut från ett mörkt|buskage och rammar älgen från sidan.|Det är skogens mytomspunna <r<björn-alfahona>!|Hon är antagligen helt <u<betagen> av ditt modiga tilltag|och vill hjälpa till!||Älgen, <g<ärkestor> som den är, har ändå inte en suck mot honan|som ändar dess liv i en fantastiskt förförisk <r<blodstorm>|(du är en björn och går igång på sådant...)||Den enorma honan tittar vaksamt på dig medans hon reser sig|sakta upp från älgkadavret.
+V2421|2520|Imponera på alfahonan genom att morra björnförföriskt.
+V2422|2520|Frusta och skaka på hela din kropp,|för att försöka imponera på alfahonan.
+V2423|2520|Ställ dig upp på baktassarna,|för att imponera på honan med din massiva längd!
+
+!ALFAHONA - IMPONERING FAIL
+T2520|9999|Honan <u<frustar till>!|(vilket kan jämföras med ett människo-fnys)|Hon är uppenbarligen <u<INTE> imponerad av ditt tafatta försök till|att imponera på henne.||Hon lunsar därifrån, fortsatt frustande.||Du är en rätt <b<medioker> björn, men du överlevde <g<älgen> i alla fall.
 
 !ÄLG FLY - FÖRLUST
 T2440|9999|Du vänder helt om och dundrar iväg så fort tassarna bär.|Inte speciellt björnaktigt av dig, du förlorar!
