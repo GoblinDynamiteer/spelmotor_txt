@@ -1,6 +1,9 @@
 Piratkapten! (av Johan Kämpe)
-!Speläventyr för SPELMOTOR TXT
+!Av Johan Kämpe, för användning i programmet SPELMOTOR TXT
+!https://github.com/GoblinDynamiteer/spelmotor_txt
 !De namn/personer som förekommer i texten är fiktiva.
+
+!Piratord: guldgaleoner, plundring, kölhalning, galjonsfigur, kabyss (köket), koj (sovlplats), loggbok
 
 T1000|0000|Arrrghhh!||Du är en <r<råbarkad kapten> på ett piratfartyg, någon gång på 1700-talet.|Havet är lugnt och ni har för närvarande inget pirateri att utföra...|Hur tänker du fördriva tiden?
 V1001|1220|Olja in ditt träben.
@@ -11,9 +14,9 @@ V1005|1115|Inget pirateri?!- <u<Nonsens>!|Skicka upp en av dina mannar till utki
 
 !ROM 1
 T1112|0000|Aaaaaah!|Inget biter så bra mot tristessen (och eventuellt skörbjuggen)|som en rejäl klunk rom!|Det här är <u<starka grejer> -- ni kom över ett stort parti under|en plundring av ett brittiskt fraktskepp på väg från en jamaikansk utpost.||Du har mycket kvar i flaskan du håller i,|och du har flera flaskor ytterligare i din kaptenshytt!
-V1113|1121|Drick mer!
-V1114|1121|Drick mer!
-V1115|1121|Drick mer!
+V1113|1121|Drick mer!!
+V1114|1121|Drick mer!!
+V1115|1121|Drick mer!!
 
 !ROM2
 T1121|0000|Du tar en <u<stor> klunk ur flaskan!|Du känner hur ditt <c<mod> och <r<piratbegär> stiger medans den|melassliknande sörjan rinner brännande skönt ner i din strupe.
@@ -27,14 +30,38 @@ V1132|1141|<u<Imponera> på mannarna med en uppvisning i <g<prickskytte>|med din 
 V1133|1142|Utamana Hank <r<"Bearded Beast"> Veal, den största av|dina mannar på en spontan <y<knytnävsdans>!
 
 !ROM3 - SVEP FLASKA -- FÄRG RÖTT!
-T1136|9995|Du slår av flaskhalsen med din kroksabel, och klunkar snabbt i dig den resterande romen.
-!OBS FORTSÄTT
+T1136|9995|Du slår av flaskhalsen med din kroksabel, och klunkar snabbt i dig den resterande romen.|Vassa glaskanter är inget som besvärar en <r<råbarkad piratkapten>.|Men nu snurrar det ordentligt, och det beror inte på sjögången.
+V1137|XXXX|Gå till sängs i din koj och sov av dig ruset.
+V1138|XXXX|
 
 !OLJA TRÄBEN 1 -- VAL 2 TILL ROM T1112
 T1220|0000|Du ryter åt fartygets skeppspojke att hämta din träbensolja!|Eftersom du är kapten, så utförs kommandot illa kvickt!|Med trasa i hand börjar du olja in ditt ståtliga ben, gjort av finaste Mahogny!
 V1221|1230|Fortsätt olja in benet, det ska glänsa!
 V1222|1112|Inget vidare underhållande arbete detta...|Öka arbetslusten med en klunk från <y<romflaskan>!
 
-!OLJA TRÄBEN 2
+!OLJA TRÄBEN 2 V1221
 T1230|0000|Du fortsätter gnida med trasan på ditt träben!|Den karibiska solen reflekteras vackert i glansen!|Det fullkomligt strålar om dig!|Du är väldigt nöjd med dig själv, fast nu väldigt uttråkad.
-V1231|1112|Du är mycket nöjd med dig själv, fast nu väldigt uttråkad
+V1231|1112|Drick <y<rom> för att ta bort udden av tristessen!
+V1232|1112|Bra idé, drick <y<rom>!
+
+!ROM4 - IMPONERA MANNARNA PISTOLSKYTTE V1132
+T1141|0000|Du uppmanar <u<högt och sluddrigt> att mannarna ska samlas på skeppets|övre däck.||Tomma romflaskor placeras ut som mål.|Stämningen bland mannarna är aningen spänd,|du har en tendens att vara lite <g<oberäknelig> med rom susandes runt i blodet.|Du laddar din flintlåspistol "Bonny" och tar sikte.
+V1142|1250|Bränn av ett skott mot flaskan som står på relingen åt <u<styrbord>!
+V1143|1250|Bränn av ett skott mot flaskan som står på relingen åt <u<babord>!
+V1144|1251|Bränn av ett skott mot flaskan som är placerad på skeppets kruttunna!
+
+!IMPONERA MANNARNA PISTOLSKYTTE - KRUTTUNNA V1144
+T1251|9999|<r<BOOOOOOOM!>|Din romskakiga hand får skottet att missa flaskan och istället träffa|kruttunnan under den.||Explosionen är stor och våldsam, ingen överlever.|Ditt piratäventyr är slut!||<c<(Lärdom: Blanda inte romdrickande med flintlåspistolskytte!)>
+
+!IMPONERA MANNARNA PISTOLSKYTTE - RELING V1143
+T1250|0000|<y<Klirr!>|Flaskan <u<splittras> tillfredställande i tusen bitar när skottet träffar.|<g<Enkelt!>|Mannarna <r<vrålar> av upphetsning!|Du är en riktigt kanonkapten!
+V1251|1260|Ladda om pistolen och skjut mot flaskan på relingen på skeppets andra sida!
+V1252|1251|Ladda om och skjut mot flaskan som är placerad på skeppets kruttunna!
+
+!IMPONERA MANNARNA PISTOLSKYTTE - RELING2 V1251
+T1260|0000|<y<Klirr!>|Flaskan har inte en chans!|Mannarna är nu väldigt imponerade av sin kapten|(och nöjda över att ingen dragit på sig en skottskada).
+V1261|1251|Ladda om pistolen, ta en stor klunk rom|och skjut sönder den sista flaskan med ett imponerande höftskott!
+V1262|1255|Mannarna känns tillräckligt övertygade.|Hissa segel och segla mot solnedgången, och nya piratäventyr!
+
+!SEGLA SOLNEDGÅNG!
+T1255|9999|Den karibiska kvällen är härligt ljummen, humöret är på topp på skeppet och rommen flödar.|Du är en kanonkapten och mannarna älskar dig.|Du vinner!
