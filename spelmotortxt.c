@@ -76,6 +76,9 @@ Ny namngivning av macron i libtxt.h
 2016-10-23
 Ändrade felaktig text i kommentarer
 
+2016-10-27
+Ytterligare kommentering av källkoden
+
 */
 
 //Deklaration av funktioner som finns i denna fil:
@@ -157,7 +160,7 @@ int main(int argc, char *argv[]){
 				Om spelet ska avslutas ger funktionen returvärdet 0, annars 1 */
 				sscanf(s+6,"%d", &switchCheck);
 				if(!textSwitchar(switchCheck)){
-					skrivUtText("Spelet är Slut|Tack!", 20, 1, 0); // | blir ny rad med funktionen
+					skrivUtText("Spelet är Slut|Tack!", 20, 1, 0); //Tecknet '|' skrivs ut som nyradstecken med funktionen
 					break; //Bryter den inre while-loopen
 				}
 				/* Funktionen listaVal anropas med idNum och textfilen som parametrar.
@@ -166,21 +169,21 @@ int main(int argc, char *argv[]){
 				//rewind() "spolar" tillbaka textfilen till dess början.
 				rewind(textfil);
 			}
-		}
+		} //Slut inre while-loop.
 	rewind(textfil);
 	printf("Tryck J för att spela igen: ");
 	restart = getchar();
-	clearBuffer(); //Tömmer teckenbuffer
-	//Sätter textfärgen till vit
+	clearBuffer(); //Tömmer teckenbuffer.
+	//Sätter textfärgen till vit.
 	system("color 7"); 
-	}
-	return 0;
-}
+	} //Slut yttre while-loop.
+	return 0; //Programmet avslutas.
+} //Slut main-funktion.
 
 
 /* Funktionen listaVal skriver ut de val som finns för det aktuella scenariot i spelet. 
 Som argument får funktionen textens identifikationsnummer som en int-variabel, 
-samt den inlästa textfilen
+samt den inlästa textfilen.
 Funktionen kontrollerar att användaren matar in en korrekt siffra för val, 
 och returnerar sedan det identifikationsnummer som tillhör nästa text som ska skrivas ut. */
 int listaVal(int a, FILE *f){
@@ -308,15 +311,16 @@ void skrivUtText(char *string, int n, _Bool linjer, _Bool tabb){
 					break;
 			}
 		}
-		//Om '>' hittas textsträngen i textsträngen innebär det att speciell formatering av text ska avslutas
+		//Om tecknet '>' hittas textsträngen i textsträngen innebär det att speciell formatering av text ska avslutas
 		else if (string[i] == '>'){
 			printf(FORM_END); //FORM_END är macrot för '\033[0m' som återställer textformatering
 		}
-		else{//triggar om tecknet är ett vanligt tecken att skriva ut
+		else{//Om tecknet i string[i] inte är ett specialtecken som har triggat ovanstående case- eller if-satser
 			//putchar skriver ut ett tecken
 			putchar(string[i]);
 		}
-		//Pauserar programmet TEXTHASTIGHET millisekunder
+		/* Pauserar programmet TEXTHASTIGHET millisekunder
+		Ju högre värdet TEXTHASTIGHET är definierat till, detso långsammare skrivs texten ut. */
 		Sleep(TEXTHASTIGHET);
 	}
 	if(linjer){ 
