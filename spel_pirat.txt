@@ -10,7 +10,7 @@ V1001|1220|Olja in ditt träben.
 V1002|1112|Drick <y<rom>!
 V1003|1113|Träna prickskytte med din nystulna flintlåspistol!
 V1004|1114|Inspektera skeppet!|Mannarna brukar slöa till om du inte visar dig på ett tag
-V1005|1115|Inget pirateri?!- <u<Nonsens>!|Skicka upp en av dina mannar till utkikskorgen för att spana efter byte!
+V1005|1315|Inget pirateri?!- <u<Nonsens>!|Skicka upp en av dina mannar till utkikskorgen för att|spana efter byte!
 
 !ROM 1
 T1112|0000|Aaaaaah!|Inget biter så bra mot tristessen (och eventuellt skörbjuggen)|som en rejäl klunk rom!|Det här är <u<starka grejer> -- ni kom över ett stort parti under|en plundring av ett brittiskt fraktskepp på väg från en jamaikansk utpost.||Du har mycket kvar i flaskan du håller i,|och du har flera flaskor ytterligare i din kaptenshytt!
@@ -65,3 +65,26 @@ V1262|1255|Mannarna känns tillräckligt övertygade.|Hissa segel och segla mot sol
 
 !SEGLA SOLNEDGÅNG!
 T1255|9999|Den karibiska kvällen är härligt ljummen, humöret är på topp på skeppet och rommen flödar.|Du är en kanonkapten och mannarna älskar dig.|Du vinner!
+
+!SKICKA UPP UTKIK - V1005
+T1315|0000|Du hugger tag i första, bästa underhuggare,|och ryter åt honom att ge sig upp till utkikskorgen!||Han klättrar snabbt och smidigt upp via mastens vant.|Väl uppe i korgen tar han fram ett spejarglas och börjar kika.||Du vrålar åt honom att han inte bör våga sig ner igen|förrän han har hittat ett lämpligt mål för plundring.||Vad vill du göra medans du väntar?|
+V1316|1430|Drick <y<rom>!
+V1317|1430|Drick <y<rom>!
+V1318|1330|Lär din trogna följeslagare Sequana nya svärord!
+V1319|1325|Polera din krok (som ersatt din vänsterhand)
+V1320|1430|Drick <y<rom>!
+
+!SKICKA UPP UTKIK - VÄNTA ROM - V1320 V1317 V1316
+T1430|0000|Timmarna går och ingenting händer, inte ett pip från utkiken..|Du har avverkat hela två romflaskor, och nu är du ordentligt trött på att vänta!
+V1431|1350|Klättra upp till korgen och ta över!|Oduglingen där uppe är uppenbarligen inte skarpsynt nog!
+
+!SKICKA UPP UTKIK - VÄNTA KROK - V1319
+V1325|0000|
+V1326|1350|Klättra upp till korgen!|Som man säger: vill man ha någonting gjort.... osv.
+
+!SKICKA UPP UTKIK - VÄNTA PAPEGOJA - V1318
+T1330|0000|Du spenderar några timmar pratandes med Sequana, din troga|<r<röda papegoja>.|Du har haft henne vid din sida sedan hon kläcktes,|och du skulle gladeligen kölhala vilken som helst av dina|mannar till döds, än att se en endaste fjäder brytas på henne.||Du lyckas lära fågeln ett par nya otrevliga fraser att lägga till|sitt redan imponerande ordförråd.|Sequana kan få till och med den mest härdade av bordellägare att rodna.||Men nu är du ordentligt trött på att vänta!
+V1332|1350|Klättra upp till korgen och skäll ut utkiken!
+
+!SKICKA UPP UTKIK - KLÄTTRA UPP! - PIRATJÄGARE KOMMER! - V1326 V1431 V1332
+T1350
