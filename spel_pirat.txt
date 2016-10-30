@@ -8,9 +8,9 @@ Piratkapten! (av Johan Kämpe)
 T1000|0000|Arrrghhh!||Du är en <r<råbarkad kapten> på ett piratfartyg, någon gång på 1700-talet.|Havet är lugnt och ni har för närvarande inget pirateri att utföra...|Hur tänker du fördriva tiden?
 V1001|1220|Olja in ditt träben.
 V1002|1112|Drick <y<rom>!
-V1003|1113|Träna prickskytte med din nystulna flintlåspistol!
-V1004|1114|Inspektera skeppet!|Mannarna brukar slöa till om du inte visar dig på ett tag
-V1005|1315|Inget pirateri?!- <u<Nonsens>!|Skicka upp en av dina mannar till utkikskorgen för att|spana efter byte!
+!V1003|1113|Träna prickskytte med din nystulna flintlåspistol!
+V1003|1114|Inspektera skeppet!|Mannarna brukar slöa till om du inte visar dig på ett tag
+V1004|1315|Inget pirateri?!- <u<Nonsens>!|Skicka upp en av dina mannar till utkikskorgen för att|spana efter byte!
 
 !ROM 1
 T1112|0000|Aaaaaah!|Inget biter så bra mot tristessen (och eventuellt skörbjuggen)|som en rejäl klunk rom!|Det här är <u<starka grejer> -- ni kom över ett stort parti under|en plundring av ett brittiskt fraktskepp på väg från en jamaikansk utpost.||Du har mycket kvar i flaskan du håller i,|och du har flera flaskor ytterligare i din kaptenshytt!
@@ -55,8 +55,8 @@ T1251|9999|<r<BOOOOOOOM!>|Din romskakiga hand får skottet att missa flaskan och 
 
 !IMPONERA MANNARNA PISTOLSKYTTE - RELING V1143
 T1250|0000|<y<Klirr!>|Flaskan <u<splittras> tillfredställande i tusen bitar när skottet träffar.|<g<Enkelt!>|Mannarna <r<vrålar> av upphetsning!|Du är en riktigt kanonkapten!
-V1251|1260|Ladda om pistolen och skjut mot flaskan på relingen på skeppets andra sida!
-V1252|1251|Ladda om och skjut mot flaskan som är placerad på skeppets kruttunna!
+V1251|1260|Ladda om pistolen och skjut mot flaskan på relingen på|skeppets andra sida!
+V1252|1251|Ladda om och skjut mot flaskan som är placerad på skeppets|kruttunna!
 
 !IMPONERA MANNARNA PISTOLSKYTTE - RELING2 V1251
 T1260|0000|<y<Klirr!>|Flaskan har inte en chans!|Mannarna är nu väldigt imponerade av sin kapten|(och nöjda över att ingen dragit på sig en skottskada).
@@ -71,20 +71,25 @@ T1315|0000|Du hugger tag i första, bästa underhuggare,|och ryter åt honom att ge
 V1316|1430|Drick <y<rom>!
 V1317|1430|Drick <y<rom>!
 V1318|1330|Lär din trogna följeslagare Sequana nya svärord!
-V1319|1325|Polera din krok (som ersatt din vänsterhand)
+V1319|1325|Slipa din krok (som ersatt din vänsterhand)
 V1320|1430|Drick <y<rom>!
 
 !SKICKA UPP UTKIK - VÄNTA ROM - V1320 V1317 V1316
-T1430|0000|Timmarna går och ingenting händer, inte ett pip från utkiken..|Du har avverkat hela två romflaskor, och nu är du ordentligt trött på att vänta!
+T1430|0000|Timmarna går och ingenting händer, inte ett <u<pip> från utkiken..|Du har avverkat hela <g<två> flaskor rom, och nu är du <u<ordentligt>|trött på att vänta!
 V1431|1350|Klättra upp till korgen och ta över!|Oduglingen där uppe är uppenbarligen inte skarpsynt nog!
 
 !SKICKA UPP UTKIK - VÄNTA KROK - V1319
-V1325|0000|
+T1325|0000|Du spenderar ett bra tag med att slipa kroken med en brynsten.|Handen blev du av med under en duell med en rivaliserande piratkapten.|Honom gick det å andra sidan inte lika "bra" för|- han förlorade mer än en hand.||Du ler muntert åt minnet...||Men nu är kroken vassare än den behöver vara!|Avskummet uppe i korgen är uppenbarligen helt <u<hopplös> på att hitta|plundringsbyten.|
 V1326|1350|Klättra upp till korgen!|Som man säger: vill man ha någonting gjort.... osv.
 
 !SKICKA UPP UTKIK - VÄNTA PAPEGOJA - V1318
-T1330|0000|Du spenderar några timmar pratandes med Sequana, din troga|<r<röda papegoja>.|Du har haft henne vid din sida sedan hon kläcktes,|och du skulle gladeligen kölhala vilken som helst av dina|mannar till döds, än att se en endaste fjäder brytas på henne.||Du lyckas lära fågeln ett par nya otrevliga fraser att lägga till|sitt redan imponerande ordförråd.|Sequana kan få till och med den mest härdade av bordellägare att rodna.||Men nu är du ordentligt trött på att vänta!
-V1332|1350|Klättra upp till korgen och skäll ut utkiken!
+T1330|0000|Du spenderar några timmar pratandes med Sequana, din troga|<r<röda papegoja>.|Du har haft henne vid din sida sedan hon kläcktes,|och du skulle gladeligen kölhala vilken som helst av dina|mannar till döds, än att se en endaste fjäder brytas på henne.||Du lyckas lära fågeln ett par nya otrevliga fraser att lägga till|sitt redan imponerande ordförråd.|Sequana kan få till och med den mest härdade av bordellägare att rodna.||Men nu är du <u<ordentligt> trött på att vänta!
+V1331|1350|Klättra upp till korgen och skäll ut utkiken!
 
 !SKICKA UPP UTKIK - KLÄTTRA UPP! - PIRATJÄGARE KOMMER! - V1326 V1431 V1332
-T1350
+T1350|0000|Du sätter (din enda) fot på repstegen|för att påbörja den mödosamma klättringen up till korgen.|(Det är inte enkelt med ett träben, och en krok i stället för vänsterhand)||Men innan du ens kommit en upp en meter så utbrister utkiken från|korgen ovanifrån: <r<PIRATJÄGARE!!>||Du tittar upp och ser mannen frenetiskt gestikulera akterut.||Du hoppar ner på däcket, sedan haltar du snabbt till skeppets bakre del.|Du rycker upp ditt spejarglas och trycker det mot ditt enda öga.|(Det andra är täckt av en ögonlapp, lång historia..)||Så sant, en spansk fullriggare närmar sig, snabbt som djävulen själv.||Paniken börjar sprida sig hos manskapet, nu är det upp till dig!
+V1351|2600|Vrid upp skeppet, och använd sidokanonerna!|Anfall är bästa försvar!
+V1352|2650|Fulla segel!|<r>FLY!>
+
+T2600|9999|Du hugger tag i roderratten samtidigt som du skränar ut order|till besättningen. Skeppet vrider upp sig, kanonportar öppnas,|<g<12-pundarna> rullas fram och laddas.||Till din fasa ser du att den enorma, fyrmastade fullriggaren|gör <u<samma sak>.||Ni hinner inte ens avfyra era egna kanoner,|innan ni dränks i en <r<svärm> av <r<24-punds-kulor>.||Ditt vackra skepp <g<flisas> sönder framför ditt öga.|Vilket också blir den sista synen du får|uppleva i ditt (om än okarakteristiskt långa) piratliv.||Att bli träffad av en kanonkula i tinningen är ändå|ett rätt piratbra sätt att sluta på.
+
