@@ -5,14 +5,43 @@ Piratkapten! (av Johan Kämpe)
 
 !Skeppstyper:
 !http://www.tundlaheim.se/skeppstyper
-!Pirat / skeppsord: guldgaleoner, plundring, kölhalning, galjonsfigur, kabyss (köket), koj (sovlplats), loggbok, slup (mindre skepp 14-18 kanoner), tremastare, fullriggare
+!Pirat / skeppsord: guldgaleoner, plundring, kölhalning, galjonsfigur, kabyss (köket), koj (sovplats), loggbok, slup (mindre skepp 14-18 kanoner), tremastare, fullriggare
+
+!Mått för ungefärlig radlängd.
+!-----------------------------------------------------------------------------------
 
 T1000|0000|Arrrghhh!||Du är en <r<råbarkad kapten> på ett piratfartyg, någon gång på 1700-talet.|Havet är lugnt och ni har för närvarande inget pirateri att utföra...|Hur tänker du fördriva tiden?
 V1001|1220|Olja in ditt träben.
 V1002|1112|Drick <y<rom>!
 !V1003|1113|Träna prickskytte med din nystulna flintlåspistol!
-V1003|1114|Inspektera skeppet!|Mannarna brukar slöa till om du inte visar dig på ett tag
+V1003|3100|Inspektera skeppet!|Mannarna brukar slöa till om du inte visar dig på ett tag
 V1004|1315|Inget pirateri?!- <u<Nonsens>!|Skicka upp en av dina mannar till utkikskorgen för att|spana efter byte!
+
+
+!INSPEKTION 1 START  V1003
+T3100|0000|Ah! Ditt vackra skepp, en tvåmastad slup med kolsvarta segel.|Hon har varit i din ägo i snart tre år nu, och ryktet går att när|man ser detta skepp med <r<Jolly Roger> hissad närma sig,|då är slutet nära.||Du beger dig till skeppets för, grymtar åt det <g<slödder> ur din|besättning som står och lutar sig slött mot relingen, innan du|ställer dig för att beundra er galjonsfigur:|En stor granitbumling, skulpterad till en ondskefull|<r<hon-demon>. Komplett med stora <u<horn>, getfötter, och vassa klor.||Hon är inte direkt vacker, men är en helt <u<utomordentlig> för att|ramma sönder fiendeskepp. 
+V3101|3200|Fortsätt inspektera skeppet.
+
+!INSPEKTION 2 V3101
+T3200|0000|Du tar dig ner från fören och går ner till det undre däcket, där|manskapet har sina kojar. Stanken är slående, en härligt vidrig|kombination av <b<svett>, <r<blod>, <g<rutten fisk>, <y<rom>, spyor.. och annat.||Männen rycker till när du kommer ner, de tittar vaksamt på dig|medans du går ett varv bland kaoset som råder där nere.||Mannarna och deras utrymme är lika ointressant som vanligt...|Men nu är de mer alerta i alla fall.||Du tar dig upp till övre däck igen.
+V3201|3300|Inspektera aktern på skeppet.
+V3202|1112|Nu är du ordentligt uttråkad, drick <y<rom>!
+
+!INSPEKTION 3 V3201
+T3300|0000|Du tar dig upp till skeppets akter, där roderratten finns.|Här är platsen som du mest befinner dig på när ni är ute och|jagar byte. Många kaptener har en styrman, men du gillar att ha|full kontroll över skeppet.|Det går ju inte lita på att någon av dina <g<avskum> till underhuggare|skulle klara av att styra skeppet i en stridssituation.||Förutom de små 1-pundskanonerna som är placerade på akterrelingen|finns inte mycket av intresse här uppe.||Du börjar bli ordentligt uttråkad.
+V3301|1112|Drick <y<rom>, det brukar bota en uttråkad kapten.
+V3302|1112|<y<Rom>, javisst!
+V3303|4000|Gör en sista ansträngning, inspektera kabyssen.
+
+!INSPEKTION 3 V3303
+T4000|0000|Du sliter tankarna från rommen, och beger dig in till det|lilla ytrumme som är skeppets kabyss.|Det har aldrig använts för matlagning, så länge som du har haft|dina klåfingriga, smutsiga och nagelbitna händer på skeppet.||Nu används utrymmet för att husera <c<plundringsbyten>: |Det är fullt med <y<guldgaleoner>, säckar med socker, <y<romflaskor>,|officerskläder, <y<guldprydda värjor> (som inte duger till strid),|<r<sammetstyger>, tobak. Listan kan göras lång, ni har haft ett par|lyckade piratår.||Allt verkar vara i sin ordning, männen vet att det|är plankgång eller kölhalning som står på menyn om det skulle|försvinna något.||Men nu är det väl ändå dags för <y<rom>?!
+V4001|1112|<y<Rom>, javisst!
+V4002|1112|<y<ROM!>
+V4003|1112|<y<Rom, rom, rom, ROM!> 
+V4004|6000|Konjak?
+
+!KONJAK - FÖRLUST!!!
+T6000|9995|KONJAK?!|Vilken vidrig tanke!|Du kan vara den SÄMSTA pirat som någonsin|fötts av en kvinna på denna jord!!|Du förlorar!!||Konjak......
 
 !ROM 1
 T1112|0000|Aaaaaah!|Inget biter så bra mot tristessen (och eventuellt skörbjuggen)|som en rejäl klunk rom!|Det här är <u<starka grejer> -- ni kom över ett stort parti under|en plundring av ett brittiskt fraktskepp på väg från en jamaikansk utpost.||Du har mycket kvar i flaskan du håller i,|och du har flera flaskor ytterligare i din kaptenshytt!
@@ -29,15 +58,34 @@ V1124|1136|Svep flaskan!
 !ROM3 - DRICK MER
 T1131|0000|Nu börjar det hända saker, du känner dig <u<ordentligt> kaptenaktig och modig nu.|Är det inte dags att åter igen visa mannarna varför just <u<du> är kapten?|<r<Myteri> är ju aldrig långt borta!
 V1132|1141|<u<Imponera> på mannarna med en uppvisning i <g<prickskytte>|med din nystulna flintlåspistol!
-V1133|1142|Utamana Hank <r<"Bearded Beast"> Veal, den största av|dina mannar på en spontan <y<knytnävsdans>!
+V1133|1600|Utamana Hank <r<"Bearded Beast"> Veal, den största av|dina mannar på en spontan <y<knytnävsdans>!
+
+!Slagsmål
+T1600|0000|Du höjer rösten och uppmanar <g<sluddrigt> att alla mannar ska samlas på|övre däck.|Du skriker på Hank att kavla upp skjortärmarna, för nu är det dags!||Hank suckar uppgivet, det här är inte den första gången|du vill <y<hävda> ditt kaptenskap på <u<detta sätt>. Resten av besättningen|verkar inte heller vara riktigt lika upphetsade av det analkande|slagsmålet, som de varit förr i tiden.
+V1601|1710|Måtta ett <b<slag> mot Hanks käke!
+V1602|1710|Försök <b<skära> hank ytligt med din <l<krok>|(du har ingen vänsterhand)|Lite <r<blodspillan> brukar hetsa upp beskådarna.
+V1603|1710|Fulspel: Måtta en <b<spark> med ditt <y<träben> mot Hanks skrev.
+
+!Slagsmål - MISS
+T1710|0000|Ditt slöa, alkoholpåverkade utfall undviks med lätthet av Hank.|Han tar ett steg bakåt och fäster sin <r<irriterade> blick på dig.||Det här var oväntat, vad du kan minnas har du aldrig missat förut!|Du känner ilskan komma över dig!
+V1711|1800|Måtta ett <b<slag> mot Hanks mellangärde.
+V1712|1800|Försök <b<skalla> den stirrande sjöbusen!
+V1713|1800|<b<Krokben!> Snabbt!
+
+!MYTERI PLANKGÅNG
+T1800|9999|Innan du hinner göra ett nytt försök så greppar Hank tag i dig med sina|brutalt stora armar, fulla av muskler och slingrande ormtatueringar.||Han ryter: <r<NU ÄR DET NOG!> - "Vi är trötta på ditt eviga <y<romdrickande>|och patetiska ledarskap! - Det är dags för en <u<ny> kapten!"||Hans grepp är <u<järnhårt>, det är inte mycket du kan göra förutom att svära|och skrika. - Du visste att du inte kunde lita på dessa <g<avskum> till pirater!||Du binds med ett tjockt hamparep, och en ögonbindel surras runt ditt|huvud.|Du tvingas sedan med en sabelspets pressad mot ryggen att gå|på plankan - och dö via drunkning.||Ironiskt att du skulle sluta så här, via ditt egna favorit-|sätt att avrätta fångar bråkiga besättningsmedlemmar.||Nåja, det är inte pirater av <u<din kaliber> som fått dö av hög ålder!
 
 !ROM3 - SVEP FLASKA -- FÄRG RÖTT!
 T1136|9995|Du slår av flaskhalsen med din kroksabel, och klunkar snabbt i dig den resterande romen.|Vassa glaskanter är inget som besvärar en <r<råbarkad piratkapten>.|Men nu snurrar det ordentligt, och det beror inte på sjögången.
-V1137|XXXX|Gå till sängs i din koj och sov av dig ruset.
-V1138|XXXX|
+V1137|2700|Gå till sängs i din koj och sov av dig ruset.
+
+!ROM  FULL - Sov av ruset V1137
+T2700|0000|Du slänger dig på den skitiga, fjäderstoppade madrassen som är din sovplats.|Du slocknar omedelbart.||Efter flera timmar rycks du upp ur din feberaktiga, alkoholinfluerade dröm,|av att någon skriker och bankar på din hyttsdörr.|<r<KAPTEN! PIRATJÄGARE!!>||Du far omedelbart upp, nu helt nykter och med adrenalinet pumpandes runt|i din skitiga, håriga piratlekamen.||Du far ut från din hytt och låter den panikslagna,|före detta bankande, sjöbusen leda dig till skeppets akter.|Du rycker upp ditt spejarglas och trycker det mot ögat.||Så sant, en enorm <b<fullriggare> närmar sig, snabbt som <r<Lucifer> själv.|Det kan inte vara något annat ett av den spanska kronans piratjägarskepp.|Ingen annan skulle vara modig (eller dum nog) att provocera ditt skepp såhär!||Nu är det upp till dig!
+V2701|2600|Vrid upp skeppet, och använd sidokanonerna!|Anfall är bästa försvar!
+V2702|2650|Fulla segel!|<r<FLY!>
 
 !OLJA TRÄBEN 1 -- VAL 2 TILL ROM T1112
-T1220|0000|Du ryter åt fartygets skeppspojke att hämta din träbensolja!|Eftersom du är kapten, så utförs kommandot illa kvickt!|Med trasa i hand börjar du olja in ditt ståtliga ben, gjort av finaste Mahogny!
+T1220|0000|Du ryter åt fartygets skeppspojke att hämta din träbensolja!|Eftersom du är <u<kapten>, så utförs kommandot illa kvickt!|Med trasa i hand börjar du olja in ditt ståtliga ben, gjort av finaste Mahogny!
 V1221|1230|Fortsätt olja in benet, det ska glänsa!
 V1222|1112|Inget vidare underhållande arbete detta...|Öka arbetslusten med en klunk från <y<romflaskan>!
 
@@ -56,7 +104,7 @@ V1144|1251|Bränn av ett skott mot flaskan som är placerad på skeppets kruttunna!
 T1251|9999|<r<BOOOOOOOM!>|Din romskakiga hand får skottet att missa flaskan och istället träffa|kruttunnan under den.||Explosionen är stor och våldsam, ingen överlever.|Ditt piratäventyr är slut!||<c<(Lärdom: Blanda inte romdrickande med flintlåspistolskytte!)>
 
 !IMPONERA MANNARNA PISTOLSKYTTE - RELING V1143
-T1250|0000|<y<Klirr!>|Flaskan <u<splittras> tillfredställande i tusen bitar när skottet träffar.|<g<Enkelt!>|Mannarna <r<vrålar> av upphetsning!|Du är en riktigt kanonkapten!
+T1250|0000|<y<Klirr!>|Flaskan <u<splittras> tillfredställande i tusen bitar när skottet träffar.|<g<Enkelt!>|Mannarna vrålar> av upphetsning!|Du är en riktigt kanonkapten!
 V1251|1260|Ladda om pistolen och skjut mot flaskan på relingen på|skeppets andra sida!
 V1252|1251|Ladda om och skjut mot flaskan som är placerad på skeppets|kruttunna!
 
@@ -66,13 +114,13 @@ V1261|1251|Ladda om pistolen, ta en stor klunk rom|och skjut sönder den sista fl
 V1262|1255|Mannarna känns tillräckligt övertygade.|Hissa segel och segla mot solnedgången, och nya piratäventyr!
 
 !SEGLA SOLNEDGÅNG!
-T1255|9999|Den karibiska kvällen är härligt ljummen,|humöret är på <b<topp> på skeppet och <y<rommen> flödar.|Du är en kanonkapten och mannarna älskar dig.|Du vinner!
+T1255|9999|Den karibiska kvällen är härligt ljummen.|Humöret är på <b<topp> på skeppet, och <y<rommen> flödar.|Du är en <r<kanonkapten> och mannarna älskar dig.|Du vinner!
 
 !SKICKA UPP UTKIK - V1005
 T1315|0000|Du hugger tag i första, bästa underhuggare,|och ryter åt honom att ge sig upp till utkikskorgen!||Han klättrar snabbt och smidigt upp via mastens vant.|Väl uppe i korgen tar han fram ett spejarglas och börjar kika.||Du vrålar åt honom att han inte bör våga sig ner igen|förrän han har hittat ett lämpligt mål för plundring.||Vad vill du göra medans du väntar?|
 V1316|1430|Drick <y<rom>!
 V1317|1430|Drick <y<rom>!
-V1318|1330|Lär din trogna följeslagare Sequana nya svärord!
+V1318|1330|Lär din trogna följeslagare <l<Sequana> nya svärord!
 V1319|1325|Slipa din krok (som ersatt din vänsterhand)
 V1320|1430|Drick <y<rom>!
 
@@ -81,7 +129,7 @@ T1430|0000|Timmarna går och ingenting händer, inte ett <u<pip> från utkiken..|Du
 V1431|1350|Klättra upp till korgen och ta över!|Oduglingen där uppe är uppenbarligen inte skarpsynt nog!
 
 !SKICKA UPP UTKIK - VÄNTA KROK - V1319
-T1325|0000|Du spenderar ett bra tag med att slipa kroken med en brynsten.|Handen blev du av med under en duell med en rivaliserande piratkapten.|Honom gick det å andra sidan inte lika "bra" för|- han förlorade mer än en hand.||Du ler muntert åt minnet...||Men nu är kroken vassare än den behöver vara!|Avskummet uppe i korgen är uppenbarligen helt <u<hopplös> på att hitta|plundringsbyten.|
+T1325|0000|Du spenderar ett bra tag med att slipa kroken med en brynsten.|Handen blev du av med under en duell med en rivaliserande piratkapten.|Honom gick det å andra sidan inte lika "bra" för|- han förlorade mer än en hand.||Du ler muntert åt minnet...||Men nu är kroken <c<vassare> än den behöver vara!|Avskummet uppe i korgen är uppenbarligen helt <u<hopplös> på att hitta|plundringsbyten.|
 V1326|1350|Klättra upp till korgen!|Som man säger: vill man ha någonting gjort.... osv.
 
 !SKICKA UPP UTKIK - VÄNTA PAPEGOJA - V1318
