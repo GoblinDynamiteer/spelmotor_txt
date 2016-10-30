@@ -3,7 +3,9 @@ Piratkapten! (av Johan Kämpe)
 !https://github.com/GoblinDynamiteer/spelmotor_txt
 !De namn/personer som förekommer i texten är fiktiva.
 
-!Piratord: guldgaleoner, plundring, kölhalning, galjonsfigur, kabyss (köket), koj (sovlplats), loggbok
+!Skeppstyper:
+!http://www.tundlaheim.se/skeppstyper
+!Pirat / skeppsord: guldgaleoner, plundring, kölhalning, galjonsfigur, kabyss (köket), koj (sovlplats), loggbok, slup (mindre skepp 14-18 kanoner), tremastare, fullriggare
 
 T1000|0000|Arrrghhh!||Du är en <r<råbarkad kapten> på ett piratfartyg, någon gång på 1700-talet.|Havet är lugnt och ni har för närvarande inget pirateri att utföra...|Hur tänker du fördriva tiden?
 V1001|1220|Olja in ditt träben.
@@ -45,7 +47,7 @@ V1231|1112|Drick <y<rom> för att ta bort udden av tristessen!
 V1232|1112|Bra idé, drick <y<rom>!
 
 !ROM4 - IMPONERA MANNARNA PISTOLSKYTTE V1132
-T1141|0000|Du uppmanar <u<högt och sluddrigt> att mannarna ska samlas på skeppets|övre däck.||Tomma romflaskor placeras ut som mål.|Stämningen bland mannarna är aningen spänd,|du har en tendens att vara lite <g<oberäknelig> med rom susandes runt i blodet.|Du laddar din flintlåspistol "Bonny" och tar sikte.
+T1141|0000|Du uppmanar <u<högt och sluddrigt> att mannarna ska samlas på skeppets|övre däck.||Tomma romflaskor placeras ut som mål.|Stämningen bland mannarna är aningen spänd,|du har en tendens att vara lite <g<oberäknelig> med rom susandes runt i blodet.|Du laddar din flintlåspistol <l<"Bonny"> och tar sikte.
 V1142|1250|Bränn av ett skott mot flaskan som står på relingen åt <u<styrbord>!
 V1143|1250|Bränn av ett skott mot flaskan som står på relingen åt <u<babord>!
 V1144|1251|Bränn av ett skott mot flaskan som är placerad på skeppets kruttunna!
@@ -64,7 +66,7 @@ V1261|1251|Ladda om pistolen, ta en stor klunk rom|och skjut sönder den sista fl
 V1262|1255|Mannarna känns tillräckligt övertygade.|Hissa segel och segla mot solnedgången, och nya piratäventyr!
 
 !SEGLA SOLNEDGÅNG!
-T1255|9999|Den karibiska kvällen är härligt ljummen, humöret är på topp på skeppet och rommen flödar.|Du är en kanonkapten och mannarna älskar dig.|Du vinner!
+T1255|9999|Den karibiska kvällen är härligt ljummen,|humöret är på <b<topp> på skeppet och <y<rommen> flödar.|Du är en kanonkapten och mannarna älskar dig.|Du vinner!
 
 !SKICKA UPP UTKIK - V1005
 T1315|0000|Du hugger tag i första, bästa underhuggare,|och ryter åt honom att ge sig upp till utkikskorgen!||Han klättrar snabbt och smidigt upp via mastens vant.|Väl uppe i korgen tar han fram ett spejarglas och börjar kika.||Du vrålar åt honom att han inte bör våga sig ner igen|förrän han har hittat ett lämpligt mål för plundring.||Vad vill du göra medans du väntar?|
@@ -87,9 +89,13 @@ T1330|0000|Du spenderar några timmar pratandes med Sequana, din troga|<r<röda pa
 V1331|1350|Klättra upp till korgen och skäll ut utkiken!
 
 !SKICKA UPP UTKIK - KLÄTTRA UPP! - PIRATJÄGARE KOMMER! - V1326 V1431 V1332
-T1350|0000|Du sätter (din enda) fot på repstegen|för att påbörja den mödosamma klättringen up till korgen.|(Det är inte enkelt med ett träben, och en krok i stället för vänsterhand)||Men innan du ens kommit en upp en meter så utbrister utkiken från|korgen ovanifrån: <r<PIRATJÄGARE!!>||Du tittar upp och ser mannen frenetiskt gestikulera akterut.||Du hoppar ner på däcket, sedan haltar du snabbt till skeppets bakre del.|Du rycker upp ditt spejarglas och trycker det mot ditt enda öga.|(Det andra är täckt av en ögonlapp, lång historia..)||Så sant, en spansk fullriggare närmar sig, snabbt som djävulen själv.||Paniken börjar sprida sig hos manskapet, nu är det upp till dig!
+T1350|0000|Du sätter (din enda) fot på repstegen|för att påbörja den mödosamma klättringen up till korgen.|(Det är inte enkelt med ett träben, och en krok i stället för vänsterhand)||Men innan du ens kommit en upp en meter så utbrister utkiken från|korgen ovanifrån: <r<PIRATJÄGARE!!>||Du tittar upp och ser mannen frenetiskt gestikulera <b<akterut>.||Du hoppar ner på däcket, sedan haltar du snabbt till skeppets bakre del.|Du rycker upp ditt spejarglas och trycker det mot ditt enda öga.|(Det andra är täckt av en ögonlapp, lång historia..)||Så sant, en spansk <b<fullriggare> närmar sig, snabbt som <r<djävulen> själv.||Paniken börjar sprida sig hos manskapet, nu är det upp till <u<dig>!
 V1351|2600|Vrid upp skeppet, och använd sidokanonerna!|Anfall är bästa försvar!
 V1352|2650|Fulla segel!|<r>FLY!>
 
-T2600|9999|Du hugger tag i roderratten samtidigt som du skränar ut order|till besättningen. Skeppet vrider upp sig, kanonportar öppnas,|<g<12-pundarna> rullas fram och laddas.||Till din fasa ser du att den enorma, fyrmastade fullriggaren|gör <u<samma sak>.||Ni hinner inte ens avfyra era egna kanoner,|innan ni dränks i en <r<svärm> av <r<24-punds-kulor>.||Ditt vackra skepp <g<flisas> sönder framför ditt öga.|Vilket också blir den sista synen du får|uppleva i ditt (om än okarakteristiskt långa) piratliv.||Att bli träffad av en kanonkula i tinningen är ändå|ett rätt piratbra sätt att sluta på.
+!ATTACKER PIRATJÄGARE - FÖRLUST
+T2600|9999|Du hugger tag i roderratten samtidigt som du skränar ut order|till besättningen. Skeppet vrider upp sig, kanonportar öppnas,|<g<12-pundarna> rullas fram och laddas.||Till din fasa ser du att den enorma, fyrmastade fullriggaren|gör <u<samma sak>.||Ni hinner inte ens avfyra era egna kanoner,|innan ni dränks i en <r<svärm> av <r<24-punds-kulor>.||Ditt vackra skepp <g<flisas> sönder framför ditt öga.|Vilket också blir den sista synen du får|uppleva i ditt (om än okarakteristiskt långa) piratliv.||Att bli träffad av en kanonkula i tinningen är ändå|ett rätt piratbra sätt att sluta på för en råbarkad piratkapten.
+
+!FLY PIRATJÄGARE - VINST
+T2650|9999|Du hugger tag i roderratten samtidigt som du <u<skränar> ut order|till besättningen. Manskapet jobbar frenetiskt med linor och segel.||Den friska, karibiska vinden hugger tag i skeppet och får det|att <y<rusa> framåt.||Fullriggaren som jagar er må vara stor, men tung.|Ditt skepp, en tvåmastad slup, rasar genom vattnet som ett|sabelhugg genom en rutten haj.||Efter någon timme syns inte längre jägarna bakom er.||Du slår om kursen söderut, du vet om ett litet ställe som välkomnar|er typ av mänskligt avskum.|Ett härligt <g<unket hak> i den <u<vidrigaste> av otäcka hamnar.|Mannarna har förtjänat lite avkoppling!||Grattis du överlevde de spanska piratjägarna!|Du är en <u<<r<kanonkapten>!
 
