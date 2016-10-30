@@ -82,6 +82,11 @@ Ny namngivning av macron i libtxt.h
 2016-10-27
 Ytterligare kommentering av källkoden
 
+2016-10-30
+Lade till kommenterad rad: #include "alt_header\libtxt.h"
+	Denna fil är en alternativ header, som tar bort färgformattering av texten i spel, 
+	kan användas om ANSI-escape-koder ej fungerar korrekt.
+
 */
 
 //Deklaration av funktioner som finns i denna fil:
