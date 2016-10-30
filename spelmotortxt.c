@@ -3,6 +3,9 @@
  //Innehåller deklarationer av funktioner i libxt.c, och macron för textformattering
 #include "libtxt.h"
 
+//Denna header kan användas för att ta bort funktionalitet för färg på text, om detta inte fungerar korrekt.
+//#include "alt_header\libtxt.h"
+
 #define N 1000	//Längd för char-variabler, och parameter till vissa funktioner
 #define TEXTFIL "spel_default.txt" //Standardtextfil med "Björnspelet"
 
