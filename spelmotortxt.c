@@ -4,6 +4,7 @@
 #include "libtxt.h"
 
 //Denna header kan användas för att ta bort funktionalitet för färg på text, om detta inte fungerar korrekt.
+//Tillgänglig på programmets GitHub-sida: https://github.com/GoblinDynamiteer/spelmotor_txt
 //#include "alt_header\libtxt.h"
 
 #define N 1000	//Längd för char-variabler, och parameter till vissa funktioner
